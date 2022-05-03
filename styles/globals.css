@@ -30,3 +30,7 @@
   font-family: 'sourcesanspro-regular';
   src: url('../public/fonts/source-sans-pro/SourceSansPro-Regular.ttf');
 }
+@font-face {
+  font-family: 'sourcesanspro-semibold';
+  src: url('../public/fonts/source-sans-pro/SourceSansPro-SemiBold.ttf');
+}

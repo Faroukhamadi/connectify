@@ -14,6 +14,7 @@ module.exports = {
         sourcesansLight: ['sourcesanspro-light', 'sans-serif'],
         sourcesansExtraLight: ['sourcesanspro-extralight', 'sans-serif'],
         sourcesansRegular: ['sourcesanspro-regular', 'sans-serif'],
+        sourcesansSemiBold: ['sourcesanspro-semibold', 'sans-serif'],
       },
       colors: {
         discord: '#404EEB',

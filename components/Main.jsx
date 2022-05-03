@@ -1,6 +1,6 @@
 const Main = () => {
   return (
-    <div className="bg-stone-900 flex flex-col min-h-screen ">
+    <div className="bg-discord_dark flex flex-col min-h-screen ">
       <h1 className="text-white font-unisansHeavyItalic text-2xl text-center mt-5">
         Messaging, <br /> made for everyone
       </h1>
