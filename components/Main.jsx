@@ -8,10 +8,10 @@ const Main = () => {
         Connecting with your loved ones has never been easier. With Connectify,
         you&apos;ll get fast, simple and secure messaging...
       </p>
-      <button className="bg-white  self-start rounded-full p-3 ml-4 px-7 py-4 font-medium text-lg">
+      <button className="bg-white self-start rounded-full p-3 ml-4 px-7 py-4 font-medium text-lg transition-all hover:text-discord duration-150 ease-in shadow-sm hover:shadow-discord">
         Sign Up for Connectify
       </button>
-      <button className="bg-indigo-400 self-start rounded-full p-3 ml-4 px-7 py-4 mt-6 font-medium text-lg text-white">
+      <button className="bg-discord self-start rounded-full p-3 ml-4 px-7 py-4 mt-6 font-medium text-lg text-white transition-colors hover:bg-indigo-500 duration-150 ease-in">
         Already Have an Account ? Login
       </button>
     </div>

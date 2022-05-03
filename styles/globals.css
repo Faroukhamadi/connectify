@@ -18,3 +18,15 @@
   font-family: 'unisans-thin';
   src: url('../public/fonts/uni-sans/Uni\ Sans\ Thin.otf');
 }
+@font-face {
+  font-family: 'sourcesanspro-light';
+  src: url('../public/fonts/source-sans-pro/SourceSansPro-Light.ttf');
+}
+@font-face {
+  font-family: 'sourcesanspro-extralight';
+  src: url('../public/fonts/source-sans-pro/SourceSansPro-ExtraLight.ttf');
+}
+@font-face {
+  font-family: 'sourcesanspro-regular';
+  src: url('../public/fonts/source-sans-pro/SourceSansPro-Regular.ttf');
+}
