@@ -19,6 +19,9 @@ module.exports = {
       colors: {
         discord: '#404EEB',
         discord_dark: '#23272a',
+        sky: {
+          550: 'hsl(197,calc(var(--saturation-factor, 1)*100%),47.8%)',
+        },
       },
     },
   },
