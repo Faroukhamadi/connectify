@@ -1,9 +1,23 @@
-import googlePlay from '../public/images/google-play-badge.png';
+import googlePlay from '../../public/images/google-play-badge.png';
 import Image from 'next/image';
+import logo from '../../public/images/white_logo.png';
+import Link from 'next/link';
 
 const MobileAuth = () => {
   return (
     <div className="bg-discord_dark flex flex-col justify-center items-center min-h-screen">
+      <Link href="/">
+        <a>
+          <Image
+            src={logo}
+            alt="Logo"
+            width={160}
+            height={160}
+            layout="fixed"
+            priority
+          />
+        </a>
+      </Link>
       <h1 className="text-slate-200 font-sourcesansSemiBold text-3xl text-center mb-5">
         For a Friendlier, Better experience, get the App!
       </h1>

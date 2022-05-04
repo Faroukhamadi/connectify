@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import Image from 'next/image';
 import logo from '../public/images/white_logo.png';
 import { showMenuContext } from '../components/showMenuContextManagement';
+import Link from 'next/link';
 
 const MobileNav = () => {
   const showMenuConsumer = useContext(showMenuContext);
@@ -30,8 +31,8 @@ const MobileNav = () => {
             <Image
               src={logo}
               alt="Logo"
-              width={180}
-              height={180}
+              width={140}
+              height={140}
               layout="fixed"
               priority
             />
@@ -39,12 +40,20 @@ const MobileNav = () => {
               <p className="text-white text-center uppercase w-52 border-t border-white/10 p-4 font-sourcesansRegular text-xl ">
                 contact
               </p>
-              <p className="text-white text-center uppercase w-52 border-t border-white/10 p-4 font-sourcesansRegular text-xl">
-                sign in
-              </p>
-              <p className="text-white text-center uppercase w-52 border-t border-b border-white/10 p-4 font-sourcesansRegular text-xl">
-                sign up
-              </p>
+              <Link href="/auth/MobileAuth">
+                <a>
+                  <p className="text-white text-center uppercase w-52 border-t border-white/10 p-4 font-sourcesansRegular text-xl">
+                    sign in
+                  </p>
+                </a>
+              </Link>
+              <Link href="/auth/MobileAuth">
+                <a>
+                  <p className="text-white text-center uppercase w-52 border-t border-b border-white/10 p-4 font-sourcesansRegular text-xl">
+                    sign up
+                  </p>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
