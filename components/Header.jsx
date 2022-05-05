@@ -6,8 +6,12 @@ import { showMenuContext } from '../components/showMenuContextManagement';
 
 const Header = () => {
   const showMenuConsumer = useContext(showMenuContext);
-  let width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-  let height = window.innerHeight > 0 ? window.innerHeight : screen.height;
+  let width, height;
+
+  if (typeof window !== 'undefined') {
+    width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    height = window.innerHeight > 0 ? window.innerHeight : screen.height;
+  }
   return (
     <>
       {!showMenuConsumer.showMenu && (
@@ -25,23 +29,21 @@ const Header = () => {
             </h1>
           </div>
           <div className="hidden md:flex justify-end items-end gap-10 mr-6 mt-3">
-            <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl ">
-              contact
-            </p>
-            <Link href="/auth/MobileAuth">
-              <a>
-                <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
-                  sign in
-                </p>
-              </a>
-            </Link>
-            <Link href="/auth/MobileAuth">
-              <a>
-                <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
-                  sign up
-                </p>
-              </a>
-            </Link>
+            <a href="#">
+              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl ">
+                contact
+              </p>
+            </a>
+            <a href="/api/auth/login">
+              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
+                sign in
+              </p>
+            </a>
+            <a href="/api/auth/login">
+              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
+                sign up
+              </p>
+            </a>
           </div>
           <svg
             viewBox="0 0 100 80"

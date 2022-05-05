@@ -2,8 +2,12 @@ import logo from '../public/images/white_logo.png';
 import Image from 'next/dist/client/image';
 
 const Footer = () => {
-  let width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-  let height = window.innerHeight > 0 ? window.innerHeight : screen.height;
+  let width, height;
+
+  if (typeof width != 'undefined') {
+    width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    height = window.innerHeight > 0 ? window.innerHeight : screen.height;
+  }
   return (
     <div className="bg-discord_dark min-h-[300px] flex flex-col items-center justify-start">
       <button className="bg-discord flex items-center rounded-full p-3 ml-4 px-7 py-4 md:px-14 md:py-7 mt-6 font-medium text-lg text-white md:text-3xl transition-colors hover:bg-indigo-500 duration-150 ease-in md:mt-12">

@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model header {
+  id                        Int       @id(map: "header_pk")
+  from_id                   Int?
+  to_id                     Int?
+  status                    String?   @db.VarChar
+  user_header_from_idTouser user?     @relation("header_from_idTouser", fields: [from_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
+  user_header_to_idTouser   user?     @relation("header_to_idTouser", fields: [to_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
+  message                   message[]
+}
+
+model message {
+  id             Int       @id(map: "message_pk")
+  header_id      Int?
+  is_from_sender Boolean?
+  content        String?   @db.VarChar
+  read           Boolean?
+  sent_at        DateTime? @db.Date
+  header         header?   @relation(fields: [header_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_header_message_id")
+}
+
+model user {
+  id                          Int      @id(map: "user_pk")
+  username                    String   @db.VarChar(100)
+  password                    String?  @db.VarChar(50)
+  first_name                  String?  @db.VarChar(30)
+  last_name                   String?  @db.VarChar(50)
+  header_header_from_idTouser header[] @relation("header_from_idTouser")
+  header_header_to_idTouser   header[] @relation("header_to_idTouser")
+}
