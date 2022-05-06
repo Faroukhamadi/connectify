@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model friendship {
+  user                         Int
+  friend                       Int
+  user_friendship_friendTouser user @relation("friendship_friendTouser", fields: [friend], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
+  user_friendship_userTouser   user @relation("friendship_userTouser", fields: [user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+  @@id([user, friend])
+}
+
 model header {
   id                        Int       @id(map: "header_pk")
   from_id                   Int?
@@ -28,11 +36,13 @@ model message {
 }
 
 model user {
-  id                          Int      @id(map: "user_pk")
-  username                    String   @db.VarChar(100)
-  password                    String?  @db.VarChar(50)
-  first_name                  String?  @db.VarChar(30)
-  last_name                   String?  @db.VarChar(50)
-  header_header_from_idTouser header[] @relation("header_from_idTouser")
-  header_header_to_idTouser   header[] @relation("header_to_idTouser")
+  id                                 Int          @id(map: "user_pk")
+  username                           String       @db.VarChar(100)
+  password                           String?      @db.VarChar(50)
+  first_name                         String?      @db.VarChar(30)
+  last_name                          String?      @db.VarChar(50)
+  friendship_friendship_friendTouser friendship[] @relation("friendship_friendTouser")
+  friendship_friendship_userTouser   friendship[] @relation("friendship_userTouser")
+  header_header_from_idTouser        header[]     @relation("header_from_idTouser")
+  header_header_to_idTouser          header[]     @relation("header_to_idTouser")
 }
