@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import { objectType, extendType } from 'nexus';
 import { Header } from './Header';
 
 export const Message = objectType({
@@ -8,6 +8,7 @@ export const Message = objectType({
     t.boolean('is_from_sender');
     t.string('content');
     t.boolean('read');
+    t.string('time');
     t.field('header_id', {
       type: Header,
       async resolve(_parent, _args, ctx) {
@@ -23,4 +24,14 @@ export const Message = objectType({
   },
 });
 
-// id, header_id, is_from_sender, content, read, sent_at
+export const MessagesQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.nonNull.list.field('messages', {
+      type: 'Message',
+      resolve(_parent, _args, ctx) {
+        return ctx.prisma.message.findMany();
+      },
+    });
+  },
+});

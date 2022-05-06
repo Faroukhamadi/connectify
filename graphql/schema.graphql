@@ -15,9 +15,11 @@ type Message {
   id: ID
   is_from_sender: Boolean
   read: Boolean
+  time: String
 }
 
 type Query {
+  messages: [Message]!
   users: [User]!
 }
 
