@@ -25,39 +25,16 @@ const CreateUserMutation = gql`
 `;
 
 const Admin = () => {
-  const [createUser, { loading, error }] = useMutation(CreateUserMutation, {
-    onCompleted: () => reset(),
-  });
+  const [createUser, { loading, error }] = useMutation(CreateUserMutation);
 
   const onsubmit = async (data) => {
     const { username, password, first_name, last_name } = data;
     const variables = { username, password, first_name, last_name };
 
-    console.log('OnSubmit function is running yayy!!', { variables });
-
     try {
-      console.log('hello1');
-      createUser({
-        variables: {
-          username: variables.username,
-          password: variables.password,
-          first_name: variables.first_name,
-          last_name: variables.last_name,
-        },
-      });
-      // const response = await createUser({
-      //   variables: {
-      //     id: variables.id,
-      //     username: variables.username,
-      //     password: variables.password,
-      //     first_name: variables.first_name,
-      //     last_name: variables.last_name,
-      //   },
-      // });
-      console.log('hello2');
-      console.log(response);
+      createUser({ variables });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -69,12 +46,18 @@ const Admin = () => {
         first_name: '',
         last_name: '',
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
-          console.log('These are the values', values);
-          console.log('submitted');
           onsubmit(values);
           setSubmitting(false);
+          resetForm({
+            values: {
+              username: '',
+              password: '',
+              first_name: '',
+              last_name: '',
+            },
+          });
         }, 400);
       }}
     >

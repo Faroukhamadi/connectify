@@ -37,7 +37,7 @@ model message {
 }
 
 model user {
-  id                                 Int          @id(map: "user_pk") @default(autoincrement())
+  id                                 Int          @id @default(autoincrement()) 
   username                           String       @db.VarChar(100)
   password                           String?      @db.VarChar(50)
   first_name                         String?      @db.VarChar(30)

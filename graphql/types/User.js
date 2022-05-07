@@ -1,4 +1,11 @@
-import { intArg, stringArg, objectType, extendType, nonNull } from 'nexus';
+import {
+  intArg,
+  stringArg,
+  objectType,
+  extendType,
+  nonNull,
+  idArg,
+} from 'nexus';
 
 export const User = objectType({
   name: 'User',
@@ -129,7 +136,10 @@ export const CreateUserMutation = extendType({
         //   throw new Error('You need to be logged in to perform an action');
         // }
 
+        const userCount = await prisma.user.count();
+        console.log(userCount + 2);
         const newUser = {
+          id: userCount + 2,
           username: args.username,
           password: args.password,
           first_name: args.first_name,
