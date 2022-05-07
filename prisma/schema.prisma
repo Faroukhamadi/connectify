@@ -12,6 +12,7 @@ model friendship {
   friend                       Int
   user_friendship_friendTouser user @relation("friendship_friendTouser", fields: [friend], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
   user_friendship_userTouser   user @relation("friendship_userTouser", fields: [user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+
   @@id([user, friend])
 }
 
@@ -36,7 +37,7 @@ model message {
 }
 
 model user {
-  id                                 Int          @id(map: "user_pk")
+  id                                 Int          @id(map: "user_pk") @default(autoincrement())
   username                           String       @db.VarChar(100)
   password                           String?      @db.VarChar(50)
   first_name                         String?      @db.VarChar(30)

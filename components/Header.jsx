@@ -1,10 +1,14 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import logo from '../public/images/white_logo.png';
+import Link from 'next/link';
 import { useContext } from 'react';
 import { showMenuContext } from '../components/showMenuContextManagement';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const Header = () => {
+  // TODO: If the user is logged in, show something else
+
+  const { user } = useUser();
   const showMenuConsumer = useContext(showMenuContext);
   let width, height;
 
@@ -44,6 +48,13 @@ const Header = () => {
                 sign up
               </p>
             </a>
+            <Link href="/admin">
+              <a>
+                <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
+                  Create User
+                </p>
+              </a>
+            </Link>
           </div>
           <svg
             viewBox="0 0 100 80"

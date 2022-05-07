@@ -1,4 +1,4 @@
-import { intArg, stringArg, objectType, extendType } from 'nexus';
+import { intArg, stringArg, objectType, extendType, nonNull } from 'nexus';
 
 export const User = objectType({
   name: 'User',
@@ -108,6 +108,37 @@ export const UsersQuery = extendType({
           },
           edges: [],
         };
+      },
+    });
+  },
+});
+
+export const CreateUserMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createUser', {
+      type: User,
+      args: {
+        username: nonNull(stringArg()),
+        password: nonNull(stringArg()),
+        first_name: nonNull(stringArg()),
+        last_name: nonNull(stringArg()),
+      },
+      async resolve(_parent, args, ctx) {
+        // if (!ctx.user) {
+        //   throw new Error('You need to be logged in to perform an action');
+        // }
+
+        const newUser = {
+          username: args.username,
+          password: args.password,
+          first_name: args.first_name,
+          last_name: args.last_name,
+        };
+
+        return await ctx.prisma.user.create({
+          data: newUser,
+        });
       },
     });
   },
