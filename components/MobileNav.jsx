@@ -9,7 +9,7 @@ const MobileNav = () => {
   return (
     <>
       {showMenuConsumer.showMenu && (
-        <div className="bg-discord_dark min-h-screen">
+        <div className="bg-discord_dark min-h-screen ">
           <header className="flex align-middle justify-end">
             <svg
               xmlns="http://www.w3.org/2000/svg"

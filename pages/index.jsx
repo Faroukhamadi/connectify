@@ -54,12 +54,13 @@ const Home = () => {
   const { endCursor, hasNextPage } = data.users.pageInfo;
 
   return (
+    // <Login />
     <ShowMenuContextProvider>
       <MobileNav />
       <Header />
       <Main />
       <Footer />
-      <ul>
+      {/* <ul>
         {data?.users.edges.map(({ node }) => (
           <li key={node.id} className="mb-32">
             <p>username: {node.username}</p>
@@ -88,7 +89,7 @@ const Home = () => {
         </button>
       ) : (
         <p>You ve reached the end!</p>
-      )}
+      )} */}
     </ShowMenuContextProvider>
   );
 };

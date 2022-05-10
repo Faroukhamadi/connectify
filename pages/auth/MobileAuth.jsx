@@ -4,6 +4,13 @@ import logo from '../../public/images/white_logo.png';
 import Link from 'next/link';
 
 const MobileAuth = () => {
+  let width, height;
+
+  if (typeof window !== 'undefined') {
+    width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    height = window.innerHeight > 0 ? window.innerHeight : screen.height;
+  }
+
   return (
     <div className="bg-discord_dark flex flex-col justify-center items-center min-h-screen">
       <Link href="/">
@@ -11,22 +18,23 @@ const MobileAuth = () => {
           <Image
             src={logo}
             alt="Logo"
-            width={160}
-            height={160}
+            width={width >= 768 && width < 1024 ? 300 : 160}
+            height={height >= 768 && height < 1024 ? 300 : 160}
             layout="fixed"
             priority
           />
         </a>
       </Link>
-      <h1 className="text-slate-200 font-sourcesansSemiBold text-3xl text-center mb-5">
+      <h1 className="text-slate-200 font-sourcesansSemiBold text-3xl text-center mb-5 md:text-5xl">
         For a Friendlier, Better experience, get the App!
       </h1>
       <div className="flex items-center mb-14">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="119.66407"
+          width="150"
           height="40"
-          viewBox="0 0 119.66407 40"
+          viewBox="0 0 150 40"
+          className="md:scale-150"
         >
           <g>
             <g>
@@ -151,15 +159,15 @@ const MobileAuth = () => {
         <Image
           src={googlePlay}
           alt="google play"
-          width={139}
-          height={59}
+          width={width >= 768 && width < 1024 ? 220 : 139}
+          height={height >= 768 && height < 1024 ? 90 : 59}
           className
         />
       </div>
-      <p className="text-slate-200 font-sourcesansLight text-lg">
+      <p className="text-slate-200 font-sourcesansLight text-lg md:text-2xl">
         Have the app installed?
       </p>
-      <button className="bg-discord  rounded-full p-3 px-7 py-4 mt-6 font-medium text-lg text-white transition-colors hover:bg-indigo-500 duration-150 ease-in">
+      <button className="bg-discord rounded-full p-3 px-7 md:p-6 md:px-14 md:py-7 md:mt-9 py-4 mt-6 font-medium md:text-3xl text-lg text-white transition-colors hover:bg-indigo-500 duration-150 ease-in">
         Launch Connectify
       </button>
     </div>

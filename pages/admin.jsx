@@ -63,28 +63,28 @@ const Admin = () => {
     >
       <Form className="flex flex-col">
         <TextInput
-          class="bg-slate-400"
+          inputClass="bg-slate-400"
           label="email or phone number"
           name="username"
           id="username"
           type="text"
         />
         <TextInput
-          class="bg-slate-400"
+          inputClass="bg-slate-400"
           label="password"
           name="password"
           id="password"
           type="password"
         />
         <TextInput
-          class="bg-slate-400"
+          inputClass="bg-slate-400"
           label="first_name"
           name="first_name"
           id="first_name"
           type="text"
         />
         <TextInput
-          class="bg-slate-400"
+          inputClass="bg-slate-400"
           label="last_name"
           name="last_name"
           id="last_name"
@@ -102,6 +102,8 @@ export default Admin;
 
 export const getServerSideProps = async ({ req, res }) => {
   const session = getSession(req, res);
+
+  console.log('SESSIONNN:', session);
 
   if (!session) {
     return {

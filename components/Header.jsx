@@ -1,60 +1,62 @@
 import Image from 'next/image';
 import logo from '../public/images/white_logo.png';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { showMenuContext } from '../components/showMenuContextManagement';
 import { useUser } from '@auth0/nextjs-auth0';
+import useWindowDimensions from '../hooks/windowDimension';
+import headerImageSize from '../lib/headerImageSize';
 
 const Header = () => {
-  // TODO: If the user is logged in, show something else
+  const { height, width } = useWindowDimensions();
+  const [imageSize, setImageSize] = useState(0);
+
+  useEffect(() => {
+    setImageSize(headerImageSize(width));
+  }, []);
 
   const { user } = useUser();
   const showMenuConsumer = useContext(showMenuContext);
-  let width, height;
 
-  if (typeof window !== 'undefined') {
-    width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-    height = window.innerHeight > 0 ? window.innerHeight : screen.height;
-  }
   return (
     <>
       {!showMenuConsumer.showMenu && (
         <div className="bg-stone-900 flex justify-between items-center p-2">
-          <div className="flex ml-3 items-center mt-3">
+          <div className="flex ml-3 items-center mt-3 lg:mx-28">
             <Image
               src={logo}
               alt="Logo"
-              width={width >= 768 && width < 1024 ? 85 : 45}
-              height={height >= 768 && height < 1024 ? 85 : 45}
+              width={imageSize}
+              height={imageSize}
               layout="fixed"
             />
-            <h1 className="text-white font-unisansHeavyItalic text-lg md:text-2xl tracking-wider ">
+            <h1 className="text-white font-unisansHeavyItalic text-lg md:text-2xl xl:text-4xl tracking-wider ">
               Connectify
             </h1>
           </div>
-          <div className="hidden md:flex justify-end items-end gap-10 mr-6 mt-3">
+          <div className="hidden md:flex justify-end items-end gap-10 mr-6 mt-3 lg:mx-28">
             <a href="#">
-              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl ">
+              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl xl:text-2xl">
                 contact
               </p>
             </a>
-            <a href="/api/auth/login">
-              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
+            <a href="/auth/MobileAuth">
+              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl xl:text-2xl">
                 sign in
               </p>
             </a>
-            <a href="/api/auth/login">
-              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
+            <a href="/auth/MobileAuth">
+              <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl xl:text-2xl">
                 sign up
               </p>
             </a>
-            <Link href="/admin">
+            {/* <Link href="/admin">
               <a>
                 <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
                   Create User
                 </p>
               </a>
-            </Link>
+            </Link> */}
           </div>
           <svg
             viewBox="0 0 100 80"
