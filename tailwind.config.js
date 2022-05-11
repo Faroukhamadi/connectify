@@ -4,6 +4,9 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    backgroundImage: {
+      'search': "url('/images/search.svg')",
+    },
     extend: {
       fontFamily: {
         unisans: ['Uni Sans', 'sans-serif'],
@@ -15,6 +18,8 @@ module.exports = {
         sourcesansExtraLight: ['sourcesanspro-extralight', 'sans-serif'],
         sourcesansRegular: ['sourcesanspro-regular', 'sans-serif'],
         sourcesansSemiBold: ['sourcesanspro-semibold', 'sans-serif'],
+        // helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+        helvetica: ['Helvetica'],
       },
       colors: {
         discord: '#404EEB',

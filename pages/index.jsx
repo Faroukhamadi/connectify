@@ -6,6 +6,7 @@ import { ShowMenuContextProvider } from '../components/showMenuContextManagement
 import Login from './auth/Login';
 import { useUser } from '@auth0/nextjs-auth0';
 import { gql, useQuery } from '@apollo/client';
+import ChatHome from '../components/Chat/ChatHome';
 
 const AllUsersQuery = gql`
   query allUsersQuery($first: Int, $after: String) {
@@ -53,14 +54,24 @@ const Home = () => {
 
   const { endCursor, hasNextPage } = data.users.pageInfo;
 
-  return (
-    // <Login />
-    <ShowMenuContextProvider>
-      <MobileNav />
-      <Header />
-      <Main />
-      <Footer />
-      {/* <ul>
+  return <ChatHome />;
+};
+
+export default Home;
+
+// IMPORTANT: First Commenting Section
+// <Login />
+
+// IMPORTANT: Second Commenting Section
+// <ShowMenuContextProvider>
+//   <MobileNav />
+//   <Header />
+//   <Main />
+//   <Footer />
+// </ShowMenuContextProvider>
+
+// IMPORTANT: The section below belongs to the Second Commenting section
+/* <ul>
         {data?.users.edges.map(({ node }) => (
           <li key={node.id} className="mb-32">
             <p>username: {node.username}</p>
@@ -89,9 +100,4 @@ const Home = () => {
         </button>
       ) : (
         <p>You ve reached the end!</p>
-      )} */}
-    </ShowMenuContextProvider>
-  );
-};
-
-export default Home;
+      )} */

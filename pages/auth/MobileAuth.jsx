@@ -18,8 +18,8 @@ const MobileAuth = () => {
           <Image
             src={logo}
             alt="Logo"
-            width={width >= 768 && width < 1024 ? 300 : 160}
-            height={height >= 768 && height < 1024 ? 300 : 160}
+            width={width >= 768 && width < 1024 ? 200 : 160}
+            height={height >= 768 && height < 1024 ? 200 : 160}
             layout="fixed"
             priority
           />

@@ -13,7 +13,7 @@ const Footer = () => {
   }
   return (
     <div className="bg-discord_dark min-h-[300px] flex flex-col items-center justify-start">
-      <button className="bg-discord flex items-center rounded-full p-3 ml-4 px-7 py-4 md:px-14 md:py-7 mt-6 font-medium text-lg text-white md:text-3xl transition-colors hover:bg-indigo-500 duration-150 ease-in md:mt-12">
+      <button className="bg-discord flex items-center rounded-full p-3 ml-4 px-7 py-4 md:px-14  md:py-7 xl:py-6 mt-6 font-medium text-lg text-white md:text-3xl transition-colors hover:bg-indigo-500 duration-150 ease-in md:mt-12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="40"

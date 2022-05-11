@@ -8,7 +8,7 @@ import useWindowDimensions from '../hooks/windowDimension';
 import headerImageSize from '../lib/headerImageSize';
 
 const Header = () => {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const [imageSize, setImageSize] = useState(0);
 
   useEffect(() => {
@@ -40,12 +40,12 @@ const Header = () => {
                 contact
               </p>
             </a>
-            <a href="/auth/MobileAuth">
+            <a href={width < 1280 ? '/auth/MobileAuth' : '/api/auth/login'}>
               <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl xl:text-2xl">
                 sign in
               </p>
             </a>
-            <a href="/auth/MobileAuth">
+            <a href={width < 1280 ? '/auth/MobileAuth' : '/api/auth/login'}>
               <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl xl:text-2xl">
                 sign up
               </p>
