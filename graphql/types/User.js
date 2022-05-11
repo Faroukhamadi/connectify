@@ -137,7 +137,6 @@ export const CreateUserMutation = extendType({
         // }
 
         const userCount = await prisma.user.count();
-        console.log(userCount + 2);
         const newUser = {
           id: userCount + 2,
           username: args.username,

@@ -4,7 +4,8 @@ import placeholder from '../../../public/images/placeholder.png';
 const ChatNavContent = () => {
   return (
     <div className="flex flex-col gap-4 ">
-      <div className="flex gap-3 justify-center">
+      <div className="mt-4"></div>
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -22,7 +23,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -40,7 +41,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -58,7 +59,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -76,7 +77,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -94,7 +95,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -112,7 +113,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -130,7 +131,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -148,7 +149,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -166,7 +167,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -184,7 +185,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -202,7 +203,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -220,7 +221,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -238,7 +239,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -256,7 +257,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -274,7 +275,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -292,7 +293,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -310,7 +311,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -328,7 +329,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -346,7 +347,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -364,7 +365,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -382,7 +383,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -400,7 +401,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -418,7 +419,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -436,7 +437,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -454,7 +455,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -472,7 +473,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -490,7 +491,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -508,7 +509,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -526,7 +527,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"
@@ -544,7 +545,7 @@ const ChatNavContent = () => {
         </div>
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
         <Image
           src={placeholder}
           alt="placeholder"

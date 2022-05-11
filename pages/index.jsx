@@ -45,6 +45,7 @@ const Home = () => {
 
   // return <a href="/api/auth/login">Login</a>;
 
+  const { user, isLoading } = useUser();
   const { data, loading, error, fetchMore } = useQuery(AllUsersQuery, {
     variables: { first: 1 },
   });
@@ -54,7 +55,17 @@ const Home = () => {
 
   const { endCursor, hasNextPage } = data.users.pageInfo;
 
-  return <ChatHome />;
+  return user ? (
+    <ChatHome />
+  ) : (
+    <ShowMenuContextProvider>
+      <MobileNav />
+      <Header />
+      <Main />
+      <Footer />
+    </ShowMenuContextProvider>
+  );
+  // <ChatHome />;
 };
 
 export default Home;
@@ -63,12 +74,6 @@ export default Home;
 // <Login />
 
 // IMPORTANT: Second Commenting Section
-// <ShowMenuContextProvider>
-//   <MobileNav />
-//   <Header />
-//   <Main />
-//   <Footer />
-// </ShowMenuContextProvider>
 
 // IMPORTANT: The section below belongs to the Second Commenting section
 /* <ul>

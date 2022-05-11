@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import { getSession } from '@auth0/nextjs-auth0';
 import { Form, Formik } from 'formik';
-import TextInput from '../components/form/TextInput';
+import TextInput from '../components/Form/TextInput';
 
 const CreateUserMutation = gql`
   mutation (
@@ -24,7 +24,7 @@ const CreateUserMutation = gql`
   }
 `;
 
-const Admin = () => {
+const Admin = ({ string }) => {
   const [createUser, { loading, error }] = useMutation(CreateUserMutation);
 
   const onsubmit = async (data) => {
@@ -102,8 +102,6 @@ export default Admin;
 
 export const getServerSideProps = async ({ req, res }) => {
   const session = getSession(req, res);
-
-  console.log('SESSIONNN:', session);
 
   if (!session) {
     return {

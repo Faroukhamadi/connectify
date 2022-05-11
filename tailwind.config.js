@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     backgroundImage: {
-      'search': "url('/images/search.svg')",
+      search: "url('/images/search.svg')",
     },
     extend: {
       fontFamily: {
@@ -30,5 +30,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')],
 };
