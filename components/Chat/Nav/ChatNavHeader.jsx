@@ -3,7 +3,7 @@ import placeholder from '../../../public/images/placeholder.png';
 
 const ChatNavHeader = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col fixed bg-discord_dark z-50 min-w-[350px] top-0">
       <div className="flex justify-between items-center mt-3 mx-2">
         <Image
           src={placeholder}
@@ -36,14 +36,13 @@ const ChatNavHeader = () => {
       <div className="mt-5 flex justify-center">
         <input
           type="text"
-          className="min-w-[95%] min-h-[45px] rounded-full bg-gray-200 bg-search bg-no-repeat bg-scroll bg-contain bg-[10px_center] indent-14 outline-none text-xl placeholder:text-gray-500 placeholder:font-helvetica placeholder:text-xl "
+          className="min-w-[95%] min-h-[40px] rounded-full bg-gray-200 bg-search bg-no-repeat bg-scroll bg-contain bg-[7px_center] indent-14 outline-none text-xl placeholder:text-gray-500 placeholder:font-helvetica placeholder:text-xl"
           placeholder="Search Connectify"
         />
       </div>
+      <div className="w-80 border-t-2 border-white opacity-5 my-6 mx-auto"></div>
     </div>
   );
 };
 
 export default ChatNavHeader;
-
-// TODO: put this as background in search bar
