@@ -7,6 +7,7 @@ import Login from './auth/Login';
 import { useUser } from '@auth0/nextjs-auth0';
 import { gql, useQuery } from '@apollo/client';
 import ChatHome from '../components/Chat/ChatHome';
+import 'reflect-metadata';
 
 const AllUsersQuery = gql`
   query allUsersQuery($first: Int, $after: String) {
