@@ -8,9 +8,9 @@ type Edge {
 }
 
 type Friendship {
-  friend: User!
-  room_id: Int!
-  user: User!
+  friend: ID
+  room_id: Int
+  user: ID
 }
 
 type Header {
@@ -39,8 +39,7 @@ type PageInfo {
 }
 
 type Query {
-  Friendship: Friendship
-  Friendships: Friendship!
+  Friendships: [Friendship]!
   messages: [Message]!
   users(after: String, first: Int): Response
 }
