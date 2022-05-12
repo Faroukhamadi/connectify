@@ -1,11 +1,4 @@
-import {
-  intArg,
-  stringArg,
-  objectType,
-  extendType,
-  nonNull,
-  idArg,
-} from 'nexus';
+import { intArg, stringArg, objectType, extendType, nonNull } from 'nexus';
 
 export const User = objectType({
   name: 'User',
