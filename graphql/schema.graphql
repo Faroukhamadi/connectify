@@ -30,7 +30,8 @@ type Message {
 }
 
 type Mutation {
-  createUser(first_name: String!, last_name: String!, password: String!, username: String!): User!
+  createAuth0User(first_name: String!, last_name: String!, username: String!): User!
+  createUser(first_name: String!, last_name: String!): User!
 }
 
 type PageInfo {

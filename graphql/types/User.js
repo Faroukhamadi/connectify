@@ -1,4 +1,5 @@
-import { intArg, stringArg, objectType, extendType, nonNull } from 'nexus';
+import { useUser } from '@auth0/nextjs-auth0';
+import { intArg, stringArg, objectType, extendType, nonNull, arg } from 'nexus';
 
 export const User = objectType({
   name: 'User',
@@ -119,16 +120,18 @@ export const CreateUserMutation = extendType({
     t.nonNull.field('createUser', {
       type: User,
       args: {
-        username: nonNull(stringArg()),
-        password: nonNull(stringArg()),
+        // TODO: username and password are already handled
+        // by AUTH0, maybe reset this after implementing
+        // login using passport.js
+        // username: nonNull(stringArg()),
+        // password: nonNull(stringArg()),
         first_name: nonNull(stringArg()),
         last_name: nonNull(stringArg()),
       },
       async resolve(_parent, args, ctx) {
-        // if (!ctx.user) {
-        //   throw new Error('You need to be logged in to perform an action');
-        // }
-
+        if (!ctx.user) {
+          throw new Error('You need to be logged in to perform an action');
+        }
         const userCount = await prisma.user.count();
         const newUser = {
           id: userCount + 2,
@@ -138,6 +141,38 @@ export const CreateUserMutation = extendType({
           last_name: args.last_name,
         };
 
+        return await ctx.prisma.user.create({
+          data: newUser,
+        });
+      },
+    });
+  },
+});
+
+export const CreateAuth0UserMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createAuth0User', {
+      type: User,
+      args: {
+        first_name: nonNull(stringArg()),
+        last_name: nonNull(stringArg()),
+        username: nonNull(stringArg()),
+      },
+      async resolve(_parent, args, ctx) {
+        if (!ctx.user) {
+          throw new Error('You need to be logged in to give your credentials');
+        }
+        const userCount = await prisma.user.count();
+        const newUser = {
+          id: userCount + 2,
+          username: args.username,
+          password: '',
+          first_name: args.first_name,
+          last_name: args.last_name,
+        };
+
+        // TODO: Change this to update instead of creating new user
         return await ctx.prisma.user.create({
           data: newUser,
         });

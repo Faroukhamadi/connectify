@@ -7,6 +7,8 @@ import Login from './auth/Login';
 import { useUser } from '@auth0/nextjs-auth0';
 import { gql, useQuery } from '@apollo/client';
 import ChatHome from '../components/Chat/ChatHome';
+import LoginAuth0 from './auth/LoginAuth0';
+import Admin from './admin';
 
 const AllUsersQuery = gql`
   query allUsersQuery($first: Int, $after: String) {
@@ -55,8 +57,12 @@ const Home = () => {
 
   const { endCursor, hasNextPage } = data.users.pageInfo;
 
+  console.log('user is: ', user.email);
+  // return ;
+
   return user ? (
-    <ChatHome />
+    // <ChatHome />
+    <LoginAuth0 />
   ) : (
     <ShowMenuContextProvider>
       <MobileNav />
@@ -65,7 +71,7 @@ const Home = () => {
       <Footer />
     </ShowMenuContextProvider>
   );
-  // <ChatHome />;
+  <ChatHome />;
 };
 
 export default Home;

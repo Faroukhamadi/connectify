@@ -1,6 +1,6 @@
 import TextInput from './TextInput';
 import Link from 'next/link';
-import { Formik, Form, useField } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 const LoginForm = () => {
