@@ -5,7 +5,7 @@ export const User = objectType({
   name: 'User',
   definition(t) {
     t.id('id');
-    t.string('username');
+    t.id('username');
     t.string('password');
     t.string('first_name');
     t.string('last_name');
@@ -134,7 +134,7 @@ export const CreateUserMutation = extendType({
         }
         const userCount = await prisma.user.count();
         const newUser = {
-          id: userCount + 2,
+          id: userCount + 3,
           username: args.username,
           password: args.password,
           first_name: args.first_name,
@@ -165,17 +165,35 @@ export const CreateAuth0UserMutation = extendType({
         }
         const userCount = await prisma.user.count();
         const newUser = {
-          id: userCount + 2,
+          id: userCount + 3,
           username: args.username,
           password: '',
           first_name: args.first_name,
           last_name: args.last_name,
         };
-
-        // TODO: Change this to update instead of creating new user
-        return await ctx.prisma.user.create({
-          data: newUser,
+        // TODO: optimize this query so that I don't have to make 10 queries
+        // before reaching my goal, optimization reference: LoginAuth0.jsx
+        let userExists = await ctx.prisma.user.count({
+          where: {
+            username: args.username,
+          },
         });
+        if (userExists) {
+          let user = await ctx.prisma.user.findFirst({
+            where: {
+              username: args.username,
+            },
+          });
+          return await ctx.prisma.user.update({
+            where: { id: user.id },
+            data: {
+              first_name: args.first_name,
+              last_name: args.last_name,
+            },
+          });
+        } else {
+          return await ctx.prisma.user.create({ data: newUser });
+        }
       },
     });
   },

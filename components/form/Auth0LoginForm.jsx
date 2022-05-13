@@ -3,6 +3,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { gql, useMutation } from '@apollo/client';
 import { getSession, useUser } from '@auth0/nextjs-auth0';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const CreateAuth0UserMutation = gql`
   mutation ($first_name: String!, $last_name: String!, $username: String!) {
@@ -20,6 +22,8 @@ const CreateAuth0UserMutation = gql`
 `;
 
 const Auth0LoginForm = () => {
+  const router = useRouter();
+
   const [createAuth0User, { loading, error }] = useMutation(
     CreateAuth0UserMutation
   );
@@ -32,6 +36,7 @@ const Auth0LoginForm = () => {
 
     try {
       createAuth0User({ variables });
+      router.push('/chathome');
     } catch (err) {
       console.error(err);
     }
@@ -92,7 +97,7 @@ const Auth0LoginForm = () => {
           type="submit"
           className="bg-discord my-4 py-2 rounded-sm px-10 font-medium text-white text-2xl transition-opacity hover:opacity-90 duration-150 ease-in "
         >
-          Login
+          Continue
         </button>
       </Form>
     </Formik>
@@ -100,20 +105,3 @@ const Auth0LoginForm = () => {
 };
 
 export default Auth0LoginForm;
-
-export const getServerSideProps = async ({ req, res }) => {
-  const session = getSession(req, res);
-
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/api/auth/login/login',
-      },
-      props: {},
-    };
-  }
-  return {
-    props: {},
-  };
-};

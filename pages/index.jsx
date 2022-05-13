@@ -4,11 +4,13 @@ import Main from '../components/Main';
 import MobileNav from '../components/MobileNav';
 import { ShowMenuContextProvider } from '../components/showMenuContextManagement';
 import Login from './auth/Login';
-import { useUser } from '@auth0/nextjs-auth0';
+import { getSession, useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { gql, useQuery } from '@apollo/client';
-import ChatHome from '../components/Chat/ChatHome';
-import LoginAuth0 from './auth/LoginAuth0';
+import ChatHome from './chathome';
+import LoginAuth0 from './loginauth0';
 import Admin from './admin';
+import { PrismaClient } from '@prisma/client';
+import { useRouter } from 'next/router';
 
 const AllUsersQuery = gql`
   query allUsersQuery($first: Int, $after: String) {
@@ -51,18 +53,20 @@ const Home = () => {
   const { data, loading, error, fetchMore } = useQuery(AllUsersQuery, {
     variables: { first: 1 },
   });
+  const router = useRouter();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
 
   const { endCursor, hasNextPage } = data.users.pageInfo;
 
-  console.log('user is: ', user.email);
-  // return ;
+  // HACK: Check if this is the first time the user logs in, if it is then redirect them
+  // to the registration page, else redirect them to the chatHome
 
-  return user ? (
-    // <ChatHome />
-    <LoginAuth0 />
+  // TODO: Handle this login redirect madness later
+
+  user ? (
+    router.push('/chathome')
   ) : (
     <ShowMenuContextProvider>
       <MobileNav />
@@ -71,7 +75,6 @@ const Home = () => {
       <Footer />
     </ShowMenuContextProvider>
   );
-  <ChatHome />;
 };
 
 export default Home;
@@ -112,3 +115,35 @@ export default Home;
       ) : (
         <p>You ve reached the end!</p>
       )} */
+
+// export const getServerSideProps = withPageAuthRequired({
+//   async getServerSideProps(ctx) {
+//     const hello = 'just';
+//     const session = getSession(ctx.req, ctx.res);
+//     console.log('the session is:', session);
+//     const prisma = new PrismaClient();
+//     const user = await prisma.user.findUnique({
+//       where: {
+//         username: session.user.email,
+//       },
+//     });
+
+//     if (
+//       !(user.first_name.length && user.last_name.length) ||
+//       !(user.first_name && user.last_name)
+//     ) {
+//       console.log('hello1');
+//       return {
+//         redirect: {
+//           permanent: false,
+//           destination: '/loginauth0',
+//         },
+//         props: { hello },
+//       };
+//     }
+//     console.log('hello2');
+//     return {
+//       props: { hello },
+//     };
+//   },
+// });

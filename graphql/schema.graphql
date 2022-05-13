@@ -56,5 +56,5 @@ type User {
   id: ID
   last_name: String
   password: String
-  username: String
+  username: ID
 }

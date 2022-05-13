@@ -13,23 +13,24 @@ model friendship {
   room_id                      Int?
   user_friendship_friendTouser user @relation("friendship_friendTouser", fields: [friend], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
   user_friendship_userTouser   user @relation("friendship_userTouser", fields: [user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+
   @@id([user, friend])
   @@unique([user, friend], map: "user_friend_unique")
 }
 
 model header {
-  id                        Int       @id(map: "header_pk")
+  id                        Int      @id(map: "header_pk")
   from_id                   Int?
   to_id                     Int?
-  status                    String?   @db.VarChar
-  user_header_from_idTouser user?     @relation("header_from_idTouser", fields: [from_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
-  user_header_to_idTouser   user?     @relation("header_to_idTouser", fields: [to_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
+  status                    String?  @db.VarChar
+  user_header_from_idTouser user?    @relation("header_from_idTouser", fields: [from_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
+  user_header_to_idTouser   user?    @relation("header_to_idTouser", fields: [to_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
   message                   message?
 }
 
 model message {
   id             Int       @id(map: "message_pk")
-  header_id      Int?
+  header_id      Int?      @unique
   is_from_sender Boolean?
   content        String?   @db.VarChar
   read           Boolean?
@@ -39,7 +40,7 @@ model message {
 
 model user {
   id                                 Int          @id(map: "user_pk") @default(autoincrement())
-  username                           String       @db.VarChar(100)
+  username                           String       @unique @db.VarChar(100)
   password                           String?      @db.VarChar(50)
   first_name                         String?      @db.VarChar(30)
   last_name                          String?      @db.VarChar(50)

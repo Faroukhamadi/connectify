@@ -15,7 +15,7 @@ const handler = async (req, res) => {
 
   if (email) {
     await prisma.user.create({
-      data: { username: email, id: userCount + 2 },
+      data: { username: email, id: userCount + 3 },
     });
     return res.status(200).json({
       message: `User with email: ${email} has been created successfully!`,
