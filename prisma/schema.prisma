@@ -24,7 +24,7 @@ model header {
   status                    String?   @db.VarChar
   user_header_from_idTouser user?     @relation("header_from_idTouser", fields: [from_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
   user_header_to_idTouser   user?     @relation("header_to_idTouser", fields: [to_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
-  message                   message[]
+  message                   message?
 }
 
 model message {

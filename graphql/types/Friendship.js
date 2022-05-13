@@ -12,11 +12,10 @@ export const Friendship = objectType({
 export const FriendshipsQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.nonNull.list.field('Friendships', {
+    t.nonNull.list.field('friendships', {
       type: 'Friendship',
       resolve(_parent, _args, ctx) {
-        return ctx.prisma
-          .$queryRaw`SELECT * FROM public.friendship ORDER BY "user" ASC, friend ASC`;
+        return ctx.prisma.friendship.findMany();
       },
     });
   },

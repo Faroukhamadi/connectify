@@ -39,7 +39,8 @@ type PageInfo {
 }
 
 type Query {
-  Friendships: [Friendship]!
+  friendships: [Friendship]!
+  headers: [Header]!
   messages: [Message]!
   users(after: String, first: Int): Response
 }
