@@ -55,7 +55,7 @@ const Home = () => {
   });
   const router = useRouter();
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading...inside index</p>;
   if (error) return <p>Oh no... {error.message}</p>;
 
   const { endCursor, hasNextPage } = data.users.pageInfo;

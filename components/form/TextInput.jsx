@@ -1,5 +1,8 @@
 import { useField } from 'formik';
 
+// TODO: Fix duplication because both
+// labelClass and class have the same values
+
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 

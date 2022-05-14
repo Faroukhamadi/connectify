@@ -42,7 +42,7 @@ const Auth0LoginForm = () => {
   };
 
   if (error) return <h1>Woops! unexpected error {error.message}</h1>;
-  if (loading) return <h1>Loading...wohooooooo</h1>;
+  if (loading) return <h1>Loading...inside Auth0LoginForm</h1>;
 
   return (
     <Formik
@@ -64,7 +64,9 @@ const Auth0LoginForm = () => {
         setTimeout(() => {
           onsubmit(values);
           setSubmitting(false);
-          router.push('/chathome');
+          setTimeout(() => {
+            router.push('/chathome');
+          }, 200);
         }, 400);
       }}
     >
