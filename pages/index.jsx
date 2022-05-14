@@ -12,26 +12,26 @@ import Admin from './admin';
 import { PrismaClient } from '@prisma/client';
 import { useRouter } from 'next/router';
 
-const AllUsersQuery = gql`
-  query allUsersQuery($first: Int, $after: String) {
-    users(first: $first, after: $after) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      edges {
-        cursor
-        node {
-          id
-          username
-          password
-          first_name
-          last_name
-        }
-      }
-    }
-  }
-`;
+// const AllUsersQuery = gql`
+//   query allUsersQuery($first: Int, $after: String) {
+//     users(first: $first, after: $after) {
+//       pageInfo {
+//         endCursor
+//         hasNextPage
+//       }
+//       edges {
+//         cursor
+//         node {
+//           id
+//           username
+//           password
+//           first_name
+//           last_name
+//         }
+//       }
+//     }
+//   }
+// `;
 
 const Home = () => {
   // const { user, error, isLoading } = useUser();
@@ -50,20 +50,29 @@ const Home = () => {
   // return <a href="/api/auth/login">Login</a>;
 
   const { user, isLoading } = useUser();
-  const { data, loading, error, fetchMore } = useQuery(AllUsersQuery, {
-    variables: { first: 1 },
-  });
+
+  // TODO: Place those somewhere else and get a better waiting state
+  // const { data, loading, error, fetchMore } = useQuery(AllUsersQuery, {
+  //   variables: { first: 1 },
+  // });
   const router = useRouter();
 
-  if (loading) return <p>Loading...inside index</p>;
-  if (error) return <p>Oh no... {error.message}</p>;
+  // if (loading) return <p>Loading...inside index</p>;
+  // if (error) return <p>Oh no... {error.message}</p>;
 
-  const { endCursor, hasNextPage } = data.users.pageInfo;
+  // const { endCursor, hasNextPage } = data.users.pageInfo;
 
   // HACK: Check if this is the first time the user logs in, if it is then redirect them
   // to the registration page, else redirect them to the chatHome
 
   // TODO: Handle this login redirect madness later
+
+  if (isLoading)
+    return (
+      <h1 className="text-6xl text-red-700">
+        LOADING IN INDEX AND EVERYONE IS SAD
+      </h1>
+    );
 
   if (user) {
     router.push('/chathome');

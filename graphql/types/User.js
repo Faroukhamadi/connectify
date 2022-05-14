@@ -160,17 +160,18 @@ export const CreateAuth0UserMutation = extendType({
         username: nonNull(stringArg()),
       },
       async resolve(_parent, args, ctx) {
-        if (!ctx.user) {
-          throw new Error('You need to be logged in to give your credentials');
-        }
+        // TODO: RESET THIS AFTER OPTIMIZATION
+        // if (!ctx.user) {
+        //   throw new Error('You need to be logged in to give your credentials');
+        // }
         const userCount = await prisma.user.count();
-        const newUser = {
-          id: userCount + 3,
-          username: args.username,
-          password: '',
-          first_name: args.first_name,
-          last_name: args.last_name,
-        };
+        // const newUser = {
+        //   id: userCount + 3,
+        //   username: args.username,
+        //   password: '',
+        //   first_name: args.first_name,
+        //   last_name: args.last_name,
+        // };
         // TODO: optimize this query so that I don't have to make 10 queries
         // before reaching my goal, optimization reference: LoginAuth0.jsx
         let userExists = await ctx.prisma.user.count({
@@ -179,21 +180,20 @@ export const CreateAuth0UserMutation = extendType({
           },
         });
         if (userExists) {
-          let user = await ctx.prisma.user.findFirst({
-            where: {
-              username: args.username,
-            },
-          });
+          console.log('User exists');
           return await ctx.prisma.user.update({
-            where: { id: user.id },
+            where: { username: args.username },
             data: {
               first_name: args.first_name,
               last_name: args.last_name,
             },
           });
-        } else {
-          return await ctx.prisma.user.create({ data: newUser });
         }
+        // HACK: no need for the else statement because we're sure that
+        // the user exists in our database
+        // else {
+        //   return await ctx.prisma.user.create({ data: newUser });
+        // }
       },
     });
   },

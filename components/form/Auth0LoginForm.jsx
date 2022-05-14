@@ -41,8 +41,9 @@ const Auth0LoginForm = () => {
     }
   };
 
-  if (error) return <h1>Woops! unexpected error {error.message}</h1>;
-  if (loading) return <h1>Loading...inside Auth0LoginForm</h1>;
+  // TODO: Reset those later with a better waiting state
+  // if (error) return <h1>Woops! unexpected error {error.message}</h1>;
+  // if (loading) return <h1>Loading...inside Auth0LoginForm</h1>;
 
   return (
     <Formik
@@ -61,13 +62,13 @@ const Auth0LoginForm = () => {
           .required('Last name is Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          onsubmit(values);
-          setSubmitting(false);
-          setTimeout(() => {
-            router.push('/chathome');
-          }, 200);
-        }, 400);
+        // setTimeout(() => {
+        onsubmit(values);
+        setSubmitting(false);
+        // setTimeout(() => {
+        router.push('/chathome');
+        // });
+        // }, 400);
       }}
     >
       <Form className="flex flex-col">
