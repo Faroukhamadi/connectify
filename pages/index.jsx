@@ -65,16 +65,18 @@ const Home = () => {
 
   // TODO: Handle this login redirect madness later
 
-  user ? (
-    router.push('/chathome')
-  ) : (
-    <ShowMenuContextProvider>
-      <MobileNav />
-      <Header />
-      <Main />
-      <Footer />
-    </ShowMenuContextProvider>
-  );
+  if (user) {
+    router.push('/chathome');
+  } else {
+    return (
+      <ShowMenuContextProvider>
+        <MobileNav />
+        <Header />
+        <Main />
+        <Footer />
+      </ShowMenuContextProvider>
+    );
+  }
 };
 
 export default Home;

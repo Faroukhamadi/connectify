@@ -29,6 +29,7 @@ const Header = () => {
               width={imageSize}
               height={imageSize}
               layout="fixed"
+              priority
             />
             <h1 className="text-white font-unisansHeavyItalic text-lg md:text-2xl xl:text-4xl tracking-wider ">
               Connectify

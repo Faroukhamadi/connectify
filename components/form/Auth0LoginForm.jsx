@@ -2,9 +2,8 @@ import TextInput from './TextInput';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { gql, useMutation } from '@apollo/client';
-import { getSession, useUser } from '@auth0/nextjs-auth0';
+import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 const CreateAuth0UserMutation = gql`
   mutation ($first_name: String!, $last_name: String!, $username: String!) {
@@ -61,17 +60,11 @@ const Auth0LoginForm = () => {
           .min(3, 'Must be 3 characters at least')
           .required('Last name is Required'),
       })}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
+      onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          console.log('submitted');
           onsubmit(values);
           setSubmitting(false);
-          resetForm({
-            values: {
-              first_name: '',
-              last_name: '',
-            },
-          });
+          router.push('/chathome');
         }, 400);
       }}
     >

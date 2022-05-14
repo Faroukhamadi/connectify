@@ -23,13 +23,7 @@ export const getServerSideProps = withPageAuthRequired({
         username: session.user.email,
       },
     });
-    // TODO: make this condition more readable
-    if (
-      (user &&
-        (!user.first_name ||
-          !(user.first_name.length && user.last_name.length))) ||
-      !(user.first_name && user.last_name)
-    ) {
+    if (user && user.first_name === null && user.last_name === null) {
       return {
         redirect: {
           permanent: false,
@@ -43,3 +37,8 @@ export const getServerSideProps = withPageAuthRequired({
     };
   },
 });
+
+// HACK: Reset this is the if statement doesn't work
+//   (!user.first_name ||
+//     !(user.first_name.length && user.last_name.length))) ||
+// !(user.first_name && user.last_name))
