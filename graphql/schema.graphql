@@ -40,8 +40,10 @@ type PageInfo {
 }
 
 type Query {
+  areFriends(friendId: Int!, userId: Int!): Boolean
+  friends(userId: Int!): [Friendship]
   friendshipsTable: [Friendship]
-  friendshipsTable11: [User]
+  friendshipsTable11: [Friendship]
   headers: [Header]!
   messages: [Message]!
   user(id: Int, username: String): User
