@@ -8,23 +8,23 @@ datasource db {
 }
 
 model friendship {
-  user                         Int
-  friend                       Int
+  userId                         Int
+  friendId                       Int
   room_id                      Int?
-  user_friendship_friendTouser user @relation("friendship_friendTouser", fields: [friend], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
-  user_friendship_userTouser   user @relation("friendship_userTouser", fields: [user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+  friend user @relation("friendship_friendTouser", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
+  user   user @relation("friendship_userTouser", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
 
-  @@id([user, friend])
-  @@unique([user, friend], map: "user_friend_unique")
+  @@id([userId, friendId])
+  @@unique([userId, friendId], map: "user_friend_unique")
 }
 
 model header {
   id                        Int      @id(map: "header_pk")
-  from_id                   Int?
-  to_id                     Int?
+  senderId                   Int?
+  receiverId                     Int?
   status                    String?  @db.VarChar
-  user_header_from_idTouser user?    @relation("header_from_idTouser", fields: [from_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
-  user_header_to_idTouser   user?    @relation("header_to_idTouser", fields: [to_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
+  from_id user?    @relation("header_from_idTouser", fields: [senderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
+  to_id   user?    @relation("header_to_idTouser", fields: [receiverId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
   message                   message?
 }
 

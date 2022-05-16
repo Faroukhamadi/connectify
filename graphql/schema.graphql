@@ -8,9 +8,9 @@ type Edge {
 }
 
 type Friendship {
-  friend: ID
+  friend: User
   room_id: Int
-  user: ID
+  user: User
 }
 
 type Header {
@@ -31,7 +31,7 @@ type Message {
 
 type Mutation {
   createAuth0User(first_name: String!, last_name: String!, username: String!): User!
-  createUser(first_name: String!, last_name: String!): User!
+  createUser(first_name: String!, last_name: String!, password: String!, username: String!): User!
 }
 
 type PageInfo {
@@ -40,9 +40,11 @@ type PageInfo {
 }
 
 type Query {
-  friendships: [Friendship]!
+  friendshipsTable: [Friendship]
+  friendshipsTable11: [User]
   headers: [Header]!
   messages: [Message]!
+  user(id: Int, username: String): User
   users(after: String, first: Int): Response
 }
 

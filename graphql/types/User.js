@@ -1,5 +1,4 @@
-import { useUser } from '@auth0/nextjs-auth0';
-import { intArg, stringArg, objectType, extendType, nonNull, arg } from 'nexus';
+import { intArg, stringArg, objectType, extendType, nonNull } from 'nexus';
 
 export const User = objectType({
   name: 'User',
@@ -114,17 +113,38 @@ export const UsersQuery = extendType({
   },
 });
 
+export const UserQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.field('user', {
+      type: User,
+      args: {
+        id: intArg(),
+        username: stringArg(),
+      },
+      resolve(_parent, args, ctx) {
+        // if (!ctx.user) {
+        //   throw new Error('You need to be logged in to perform this action');
+        // }
+        if (args.id)
+          return ctx.prisma.user.findUnique({ where: { id: args.id } });
+        if (args.username)
+          return ctx.prisma.user.findUnique({
+            where: { username: args.username },
+          });
+      },
+    });
+  },
+});
+
 export const CreateUserMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.nonNull.field('createUser', {
       type: User,
       args: {
-        // TODO: username and password are already handled
-        // by AUTH0, maybe reset this after implementing
-        // login using passport.js
-        // username: nonNull(stringArg()),
-        // password: nonNull(stringArg()),
+        username: nonNull(stringArg()),
+        password: nonNull(stringArg()),
         first_name: nonNull(stringArg()),
         last_name: nonNull(stringArg()),
       },
