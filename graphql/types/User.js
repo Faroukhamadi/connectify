@@ -152,6 +152,7 @@ export const CreateUserMutation = extendType({
         if (!ctx.user) {
           throw new Error('You need to be logged in to perform an action');
         }
+        // TODO: PRIORITY->Remove this dumb userCount in favor of autoInc
         const userCount = await prisma.user.count();
         const newUser = {
           id: userCount + 3,

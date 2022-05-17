@@ -22,7 +22,7 @@ type Header {
 
 type Message {
   content: String
-  header_id: Header
+  header: Header
   id: ID
   is_from_sender: Boolean
   read: Boolean
@@ -31,6 +31,7 @@ type Message {
 
 type Mutation {
   createAuth0User(first_name: String!, last_name: String!, username: String!): User!
+  createHeader(content: String!, isFromSender: Boolean!, read: Boolean!, receiverId: Int!, senderId: Int!, sentAt: String!, status: String!): Header!
   createUser(first_name: String!, last_name: String!, password: String!, username: String!): User!
 }
 
@@ -44,8 +45,8 @@ type Query {
   friends(userId: Int!): [Friendship]
   friendshipsTable: [Friendship]
   friendshipsTable11: [Friendship]
-  headers: [Header]!
-  messages: [Message]!
+  headers: [Header]
+  messages: [Message]
   user(id: Int, username: String): User
   users(after: String, first: Int): Response
 }

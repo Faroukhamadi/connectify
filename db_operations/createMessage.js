@@ -3,16 +3,16 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const main = async () => {
-  await prisma.message.create({
+  const message = await prisma.message.create({
     data: {
-      id: 1,
-      header_id: 1,
+      header_id: null,
       is_from_sender: true,
       content: 'Hello World',
       read: true,
       sent_at: new Date(),
     },
   });
+  console.log(message.id);
 };
 
 main().catch((err) => console.log(err));

@@ -3,12 +3,20 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const main = async () => {
+  // This works perfectly!!
   await prisma.header.create({
     data: {
-      id: 1,
-      receiverId: 1,
       senderId: 2,
-      status: 'sent',
+      receiverId: 1,
+      status: 'pending',
+      message: {
+        create: {
+          content: 'Hello from nested write',
+          read: true,
+          sent_at: new Date(),
+          is_from_sender: true,
+        },
+      },
     },
   });
 };

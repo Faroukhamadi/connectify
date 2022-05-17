@@ -1,7 +1,4 @@
 import { objectType, extendType, nonNull, stringArg, intArg } from 'nexus';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 export const Friendship = objectType({
   name: 'Friendship',
@@ -55,7 +52,7 @@ export const AreFriendsQuery = extendType({
         friendId: nonNull(intArg()),
       },
       async resolve(_, args, ctx) {
-        const result = await prisma.friendship.findFirst({
+        const result = await ctx.prisma.friendship.findFirst({
           where: {
             AND: [
               {
@@ -93,7 +90,7 @@ export const FriendsQuery = extendType({
         userId: nonNull(intArg()),
       },
       resolve(_parent, args, ctx) {
-        return prisma.friendship.findMany({
+        return ctx.prisma.friendship.findMany({
           include: {
             user: true,
             friend: true,

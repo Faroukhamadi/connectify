@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -8,8 +9,8 @@ datasource db {
 }
 
 model friendship {
-  userId                         Int
-  friendId                       Int
+  userId                       Int
+  friendId                     Int
   room_id                      Int?
   friend user @relation("friendship_friendTouser", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
   user   user @relation("friendship_userTouser", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
@@ -19,9 +20,9 @@ model friendship {
 }
 
 model header {
-  id                        Int      @id(map: "header_pk")
-  senderId                   Int?
-  receiverId                     Int?
+  id                        Int      @id(map: "header_pk") @default(autoincrement())
+  senderId                  Int?
+  receiverId                Int?
   status                    String?  @db.VarChar
   from_id user?    @relation("header_from_idTouser", fields: [senderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
   to_id   user?    @relation("header_to_idTouser", fields: [receiverId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
@@ -29,7 +30,7 @@ model header {
 }
 
 model message {
-  id             Int       @id(map: "message_pk")
+  id             Int       @id(map: "message_pk") @default(autoincrement())
   header_id      Int?      @unique
   is_from_sender Boolean?
   content        String?   @db.VarChar
