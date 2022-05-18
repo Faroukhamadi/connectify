@@ -1,7 +1,11 @@
-import { getSession, useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import Auth0LoginForm from '../components/Form/Auth0LoginForm';
+import useAuthentication from '../hooks/authentication';
 
 const LoginAuth0 = () => {
+  // TODO: fix routing inside our app and make most of it client side
+  // by using this hook
+  useAuthentication('/helloWorld');
+
   return (
     <div className="bg-discord_dark min-h-screen flex items-center justify-center">
       <div className="bg-zinc-700 flex flex-col px-10 py-14 rounded-md min-w-[500px] max-w-[500px] shadow-2xl">
@@ -18,19 +22,3 @@ const LoginAuth0 = () => {
 };
 
 export default LoginAuth0;
-
-export const getServerSideProps = async ({ req, res }) => {
-  const session = getSession(req, res);
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/api/auth/login',
-      },
-      props: {},
-    };
-  }
-  return {
-    props: {},
-  };
-};

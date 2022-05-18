@@ -6,7 +6,7 @@ import { ShowMenuContextProvider } from '../components/showMenuContextManagement
 import Login from './auth/Login';
 import { getSession, useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { gql, useQuery } from '@apollo/client';
-import ChatHome from './chathome';
+import ChatHome from './ChatHome';
 import LoginAuth0 from './loginauth0';
 import Admin from './admin';
 import { PrismaClient } from '@prisma/client';
