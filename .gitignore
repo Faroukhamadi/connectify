@@ -25,6 +25,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# database operations
+db_operations
+
 # local env files
 .env*.local
 cypress.env.json

@@ -15,9 +15,7 @@ export const Edge = objectType({
   name: 'Edge',
   definition(t) {
     t.string('cursor');
-    t.field('node', {
-      type: User,
-    });
+    t.field('node', { type: User });
   },
 });
 
@@ -33,9 +31,7 @@ export const Response = objectType({
   name: 'Response',
   definition(t) {
     t.field('pageInfo', { type: PageInfo });
-    t.list.field('edges', {
-      type: Edge,
-    });
+    t.list.field('edges', { type: Edge });
   },
 });
 
@@ -46,7 +42,7 @@ export const UsersQuery = extendType({
       type: 'Response',
       args: {
         first: intArg(),
-        after: stringArg(),
+        after: intArg(),
       },
       async resolve(_, args, ctx) {
         let queryResults = null;
@@ -57,7 +53,7 @@ export const UsersQuery = extendType({
             take: args.first, // the number of items to return from the database
             skip: 1, // skip the cursor
             cursor: {
-              id: Number(args.after),
+              id: args.after,
             },
           });
         } else {
@@ -81,7 +77,6 @@ export const UsersQuery = extendType({
               id: myCursor,
             },
             orderBy: {
-              // TODO: maybe change this to index or something
               id: 'asc',
             },
           });

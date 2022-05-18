@@ -51,17 +51,14 @@ export const CreateHeaderMutation = extendType({
         sentAt: nonNull(stringArg()),
         isFromSender: nonNull(booleanArg()),
       },
-      // TODO: fix this query to support auto increment
       async resolve(_parent, args, ctx) {
-        return await prisma.header.create({
+        return await ctx.prisma.header.create({
           data: {
-            id: 6,
             senderId: args.senderId,
             receiverId: args.receiverId,
             status: args.status,
             message: {
               create: {
-                id: 5,
                 content: args.content,
                 read: args.read,
                 sent_at: args.sentAt,

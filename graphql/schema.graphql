@@ -29,6 +29,21 @@ type Message {
   time: String
 }
 
+type MessageEdge {
+  cursor: String
+  node: Message
+}
+
+type MessagePageInfo {
+  endCursor: String
+  hasNextPage: Boolean
+}
+
+type MessageResponse {
+  edges: [MessageEdge]
+  pageInfo: MessagePageInfo
+}
+
 type Mutation {
   createAuth0User(first_name: String!, last_name: String!, username: String!): User!
   createHeader(content: String!, isFromSender: Boolean!, read: Boolean!, receiverId: Int!, senderId: Int!, sentAt: String!, status: String!): Header!
@@ -46,9 +61,9 @@ type Query {
   friendshipsTable: [Friendship]
   friendshipsTable11: [Friendship]
   headers: [Header]
-  messages: [Message]
+  messages(after: Int, first: Int): MessageResponse
   user(id: Int, username: String): User
-  users(after: String, first: Int): Response
+  users(after: Int, first: Int): Response
 }
 
 type Response {
