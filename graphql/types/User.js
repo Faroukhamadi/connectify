@@ -35,6 +35,7 @@ export const Response = objectType({
   },
 });
 
+// FIXME: hasNextPage false for last pages
 export const UsersQuery = extendType({
   type: 'Query',
   definition(t) {

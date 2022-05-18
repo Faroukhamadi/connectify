@@ -69,23 +69,19 @@ const Home = () => {
 
   if (isLoading)
     return (
-      <h1 className="text-6xl text-red-700">
+      <div className="bg-discord_dark h-screen min-w-[350px] scrollbar scrollbar-thumb-discord  scrollbar-track-slate-300  overflow-y-scroll">
         LOADING IN INDEX AND EVERYONE IS SAD
-      </h1>
+      </div>
     );
 
-  if (user) {
-    router.push('/chathome');
-  } else {
-    return (
-      <ShowMenuContextProvider>
-        <MobileNav />
-        <Header />
-        <Main />
-        <Footer />
-      </ShowMenuContextProvider>
-    );
-  }
+  return (
+    <ShowMenuContextProvider>
+      <MobileNav />
+      <Header />
+      <Main />
+      <Footer />
+    </ShowMenuContextProvider>
+  );
 };
 
 export default Home;

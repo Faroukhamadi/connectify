@@ -20,23 +20,6 @@ export default objectType({
   },
 });
 
-export const HeadersQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.list.field('headers', {
-      type: 'Header',
-      resolve(_parent, _args, ctx) {
-        return ctx.prisma.header.findMany({
-          include: {
-            from_id: true,
-            to_id: true,
-          },
-        });
-      },
-    });
-  },
-});
-
 export const CreateHeaderMutation = extendType({
   type: 'Mutation',
   definition(t) {
@@ -65,6 +48,23 @@ export const CreateHeaderMutation = extendType({
                 is_from_sender: args.isFromSender,
               },
             },
+          },
+        });
+      },
+    });
+  },
+});
+
+export const HeadersQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.list.field('headers', {
+      type: 'Header',
+      resolve(_parent, _args, ctx) {
+        return ctx.prisma.header.findMany({
+          include: {
+            from_id: true,
+            to_id: true,
           },
         });
       },

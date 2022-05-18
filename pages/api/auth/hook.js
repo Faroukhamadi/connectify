@@ -11,11 +11,9 @@ const handler = async (req, res) => {
     return res.status(403).json({ message: 'You must provide the secret' });
   }
 
-  const userCount = await prisma.user.count();
-
   if (email) {
     await prisma.user.create({
-      data: { username: email, id: userCount + 3 },
+      data: { username: email },
     });
     return res.status(200).json({
       message: `User with email: ${email} has been created successfully!`,
