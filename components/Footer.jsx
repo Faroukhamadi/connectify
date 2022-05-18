@@ -38,13 +38,13 @@ const Footer = () => {
         </h1>
       </div>
       <div className="hidden md:flex md:gap-10 md:mt-6">
-        <p className="text-gray-400 font-sourcesansRegular mb-3 text-sm md:text-lg">
+        <p className="text-gray-400 font-sourcesansRegular mb-3 text-sm md:text-lg xl:cursor-pointer">
           PRIVACY POLICY
         </p>
-        <p className="text-gray-400 font-sourcesansRegular mb-3 text-sm md:text-lg">
+        <p className="text-gray-400 font-sourcesansRegular mb-3 text-sm md:text-lg xl:cursor-pointer">
           TERMS AND CONDITIONS
         </p>
-        <p className="text-gray-400 font-sourcesansRegular mb-3 text-sm md:text-lg">
+        <p className="text-gray-400 font-sourcesansRegular mb-3 text-sm md:text-lg xl:cursor-pointer">
           CONTACT
         </p>
       </div>

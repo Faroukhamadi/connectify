@@ -33,7 +33,7 @@ import { useRouter } from 'next/router';
 //   }
 // `;
 
-const Home = () => {
+const Home = ({ data }) => {
   // const { user, error, isLoading } = useUser();
 
   // if (isLoading) return <div>Loading...</div>;
@@ -55,24 +55,13 @@ const Home = () => {
   // const { data, loading, error, fetchMore } = useQuery(AllUsersQuery, {
   //   variables: { first: 1 },
   // });
-  const router = useRouter();
-
   // if (loading) return <p>Loading...inside index</p>;
   // if (error) return <p>Oh no... {error.message}</p>;
 
   // const { endCursor, hasNextPage } = data.users.pageInfo;
 
-  // HACK: Check if this is the first time the user logs in, if it is then redirect them
-  // to the registration page, else redirect them to the chatHome
-
-  // TODO: Handle this login redirect madness later
-
   if (isLoading)
-    return (
-      <div className="bg-discord_dark h-screen min-w-[350px] scrollbar scrollbar-thumb-discord  scrollbar-track-slate-300  overflow-y-scroll">
-        LOADING IN INDEX AND EVERYONE IS SAD
-      </div>
-    );
+    return <div className="bg-discord_dark min-h-screen min-w-full"></div>;
 
   return (
     <ShowMenuContextProvider>
@@ -85,6 +74,36 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const data = [
+    {
+      firstName: 'Farouk',
+      lastName: 'Hamadi',
+      age: 1,
+    },
+    {
+      firstName: 'Farouk',
+      lastName: 'Hamadi',
+      age: 2,
+    },
+    {
+      firstName: 'Farouk',
+      lastName: 'Hamadi',
+      age: 3,
+    },
+    {
+      firstName: 'Farouk',
+      lastName: 'Hamadi',
+      age: 4,
+    },
+  ];
+  return {
+    props: {
+      data,
+    },
+  };
+}
 
 // IMPORTANT: First Commenting Section
 // <Login />
