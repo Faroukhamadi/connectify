@@ -6,8 +6,8 @@ import { ShowMenuContextProvider } from '../components/showMenuContextManagement
 import Login from './auth/Login';
 import { getSession, useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { gql, useQuery } from '@apollo/client';
-import ChatHome from './ChatHome';
-import LoginAuth0 from './loginauth0';
+import ChatHome from '../components/ChatHome';
+import LoginAuth0 from '../components/LoginAuth0';
 import Admin from './admin';
 import { PrismaClient } from '@prisma/client';
 import { useRouter } from 'next/router';
@@ -48,7 +48,6 @@ const Home = ({ data }) => {
   // }
 
   // return <a href="/api/auth/login">Login</a>;
-
   const { user, isLoading } = useUser();
 
   // TODO: Place those somewhere else and get a better waiting state

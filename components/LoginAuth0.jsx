@@ -1,11 +1,6 @@
-import Auth0LoginForm from '../components/Form/Auth0LoginForm';
-import useAuthentication from '../hooks/authentication';
+import Auth0LoginForm from './Form/Auth0LoginForm';
 
-const LoginAuth0 = () => {
-  // TODO: fix routing inside our app and make most of it client side
-  // by using this hook
-  useAuthentication('/helloWorld');
-
+const LoginAuth0 = ({ setShowLogin }) => {
   return (
     <div className="bg-discord_dark min-h-screen flex items-center justify-center">
       <div className="bg-zinc-700 flex flex-col px-10 py-14 rounded-md min-w-[500px] max-w-[500px] shadow-2xl">
@@ -15,7 +10,7 @@ const LoginAuth0 = () => {
         <p className="text-gray-300 text-sm text-center">
           Glad you care about your loved ones!
         </p>
-        <Auth0LoginForm />
+        <Auth0LoginForm setShowLogin={setShowLogin} />
       </div>
     </div>
   );

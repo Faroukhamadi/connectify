@@ -20,7 +20,7 @@ const CreateAuth0UserMutation = gql`
   }
 `;
 
-const Auth0LoginForm = () => {
+const Auth0LoginForm = ({ setShowLogin }) => {
   const router = useRouter();
 
   const [createAuth0User, { loading, error }] = useMutation(
@@ -35,7 +35,6 @@ const Auth0LoginForm = () => {
 
     try {
       createAuth0User({ variables });
-      router.push('/chathome');
     } catch (err) {
       console.error(err);
     }
@@ -65,8 +64,8 @@ const Auth0LoginForm = () => {
         // setTimeout(() => {
         onsubmit(values);
         setSubmitting(false);
+        setShowLogin(false);
         // setTimeout(() => {
-        router.push('/chathome');
         // });
         // }, 400);
       }}
