@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import ChatHome from '../components/ChatHome';
 import LoginAuth0 from '../components/LoginAuth0';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 
 const UserQuery = gql`
@@ -15,29 +15,32 @@ const UserQuery = gql`
 `;
 
 const PostLogin = () => {
-  let body = null;
+  let body = <h1>Wtf!</h1>;
   const [showLogin, setShowLogin] = useState(true);
   const [username, setUsername] = useState('');
   const { user, isLoading } = useUser();
 
-  if (!isLoading) username = user.email;
+  useEffect(() => {
+    if (!isLoading) setUsername(user.email);
+    console.log(username);
+  }, [isLoading, user, username]);
 
   const { data, loading, error } = useQuery(UserQuery, {
     variables: { username: username },
   });
-  console.log(data);
-
   if (error) return <h1>{error.message}</h1>;
   if (loading) return <div className="h-screen bg-discord_dark"></div>;
-  if (
-    typeof data !== 'undefined' &&
-    data.user.first_name === null &&
-    data.user.last_name === null &&
-    showLogin
-  ) {
-    body = <LoginAuth0 setShowLogin={setShowLogin} />;
-  } else {
-    body = <ChatHome />;
+  if (data.user) {
+    console.log(data);
+    if (
+      data.user.first_name === null &&
+      data.user.last_name === null &&
+      showLogin
+    ) {
+      body = <LoginAuth0 setShowLogin={setShowLogin} />;
+    } else {
+      body = <ChatHome />;
+    }
   }
 
   return body;
