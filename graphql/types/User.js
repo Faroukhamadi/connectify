@@ -145,13 +145,10 @@ export const CreateUserMutation = extendType({
         last_name: nonNull(stringArg()),
       },
       async resolve(_parent, args, ctx) {
-        if (!ctx.user) {
-          throw new Error('You need to be logged in to perform an action');
-        }
-        // TODO: PRIORITY->Remove this dumb userCount in favor of autoInc
-        const userCount = await prisma.user.count();
+        // if (!ctx.user) {
+        //   throw new Error('You need to be logged in to perform an action');
+        // }
         const newUser = {
-          id: userCount + 3,
           username: args.username,
           password: args.password,
           first_name: args.first_name,

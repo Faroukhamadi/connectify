@@ -40,10 +40,6 @@ const Auth0LoginForm = ({ setShowLogin }) => {
     }
   };
 
-  // TODO: Reset those later with a better waiting state
-  // if (error) return <h1>Woops! unexpected error {error.message}</h1>;
-  // if (loading) return <h1>Loading...inside Auth0LoginForm</h1>;
-
   return (
     <Formik
       initialValues={{

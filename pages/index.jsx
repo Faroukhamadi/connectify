@@ -34,20 +34,6 @@ import { useRouter } from 'next/router';
 // `;
 
 const Home = ({ data }) => {
-  // const { user, error, isLoading } = useUser();
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>{error.message}</div>;
-
-  // if (user) {
-  //   return (
-  //     <div>
-  //       Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
-  //     </div>
-  //   );
-  // }
-
-  // return <a href="/api/auth/login">Login</a>;
   const { user, isLoading } = useUser();
 
   // TODO: Place those somewhere else and get a better waiting state
@@ -140,35 +126,3 @@ export async function getStaticProps() {
       ) : (
         <p>You ve reached the end!</p>
       )} */
-
-// export const getServerSideProps = withPageAuthRequired({
-//   async getServerSideProps(ctx) {
-//     const hello = 'just';
-//     const session = getSession(ctx.req, ctx.res);
-//     console.log('the session is:', session);
-//     const prisma = new PrismaClient();
-//     const user = await prisma.user.findUnique({
-//       where: {
-//         username: session.user.email,
-//       },
-//     });
-
-//     if (
-//       !(user.first_name.length && user.last_name.length) ||
-//       !(user.first_name && user.last_name)
-//     ) {
-//       console.log('hello1');
-//       return {
-//         redirect: {
-//           permanent: false,
-//           destination: '/loginauth0',
-//         },
-//         props: { hello },
-//       };
-//     }
-//     console.log('hello2');
-//     return {
-//       props: { hello },
-//     };
-//   },
-// });
