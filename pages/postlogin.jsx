@@ -15,14 +15,13 @@ const UserQuery = gql`
 `;
 
 const PostLogin = () => {
-  let body = <h1>Wtf!</h1>;
+  let body = null;
   const [showLogin, setShowLogin] = useState(true);
   const [username, setUsername] = useState('');
   const { user, isLoading } = useUser();
 
   useEffect(() => {
     if (!isLoading) setUsername(user.email);
-    console.log(username);
   }, [isLoading, user, username]);
 
   const { data, loading, error } = useQuery(UserQuery, {
@@ -31,7 +30,6 @@ const PostLogin = () => {
   if (error) return <h1>{error.message}</h1>;
   if (loading) return <div className="h-screen bg-discord_dark"></div>;
   if (data.user) {
-    console.log(data);
     if (
       data.user.first_name === null &&
       data.user.last_name === null &&

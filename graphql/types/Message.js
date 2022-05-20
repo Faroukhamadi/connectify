@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { objectType, extendType, intArg } from 'nexus';
+import { objectType, extendType, intArg, nonNull } from 'nexus';
 import Header from './Header';
 
 const prisma = new PrismaClient();
@@ -124,6 +124,47 @@ export const MessagesQuery = extendType({
           },
           edges: [],
         };
+      },
+    });
+  },
+});
+
+export const HeadersMessagesQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.list.field('headers_messages', {
+      type: 'Message',
+      args: {
+        firstId: nonNull(intArg()),
+        secondId: nonNull(intArg()),
+      },
+      resolve(_parent, args, _ctx) {
+        return prisma.message.findMany({
+          include: {
+            header: {
+              include: {
+                from_id: true,
+                to_id: true,
+              },
+            },
+          },
+          where: {
+            OR: [
+              {
+                header: {
+                  senderId: args.firstId,
+                  receiverId: args.secondId,
+                },
+              },
+              {
+                header: {
+                  senderId: args.secondId,
+                  receiverId: args.firstId,
+                },
+              },
+            ],
+          },
+        });
       },
     });
   },

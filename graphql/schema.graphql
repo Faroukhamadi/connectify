@@ -61,6 +61,7 @@ type Query {
   friendshipsTable: [Friendship]
   friendshipsTable11: [Friendship]
   headers: [Header]
+  headers_messages(firstId: Int!, secondId: Int!): [Message]
   messages(after: Int, first: Int): MessageResponse
   user(id: Int, username: String): User
   users(after: Int, first: Int): Response
