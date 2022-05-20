@@ -1,11 +1,10 @@
 import Image from 'next/image';
-import logo from '../public/images/white_logo.png';
-import Link from 'next/link';
+import logo from '@/public/images/white_logo.png';
 import { useContext, useEffect, useState } from 'react';
-import { showMenuContext } from '../components/showMenuContextManagement';
+import { showMenuContext } from '@/components/showMenuContextManagement';
 import { useUser } from '@auth0/nextjs-auth0';
-import useWindowDimensions from '../hooks/windowDimension';
-import headerImageSize from '../lib/headerImageSize';
+import useWindowDimensions from '@/hooks/windowDimension';
+import headerImageSize from '@/lib/headerImageSize';
 
 const Header = () => {
   const { width } = useWindowDimensions();

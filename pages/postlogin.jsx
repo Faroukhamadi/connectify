@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import ChatHome from '../components/ChatHome';
-import LoginAuth0 from '../components/LoginAuth0';
+import ChatHome from '@/components/ChatHome';
+import LoginAuth0 from '@/components/LoginAuth0';
 import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 

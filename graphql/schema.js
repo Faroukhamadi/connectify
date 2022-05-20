@@ -1,7 +1,6 @@
 import { makeSchema } from 'nexus';
 import { join } from 'path';
 import * as types from './types';
-import { gql } from 'apollo-server-micro';
 
 export const schema = makeSchema({
   types,

@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Image from 'next/image';
-import placeholder from '../../../public/images/placeholder.png';
+import placeholder from '@/public/images/placeholder.png';
 
 const ChatMainHeader = () => {
   return (

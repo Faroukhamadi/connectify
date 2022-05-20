@@ -1,8 +1,7 @@
-import useWindowDimensions from '../hooks/windowDimension';
+import useWindowDimensions from '@/hooks/windowDimension';
 
 const Main = () => {
   const { width } = useWindowDimensions();
-
   return (
     <div className="bg-stone-900 flex flex-col min-h-screen ">
       <h1 className="text-white font-unisansHeavyItalic text-2xl md:text-5xl md:mt-14 text-center mt-5 xl:text-7xl">

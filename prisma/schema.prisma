@@ -25,8 +25,9 @@ model header {
   receiverId                Int?
   messageId                 Int?
   status                    String?  @db.VarChar
-  from_id user?    @relation("header_from_idTouser", fields: [senderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
-  to_id   user?    @relation("header_to_idTouser", fields: [receiverId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
+  from_id                   user?    @relation("header_from_idTouser", fields: [senderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_from")
+  to_id                     user?    @relation("header_to_idTouser", fields: [receiverId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_header_to")
+  createdAt                 DateTime @default(now())
   message                   message?
 }
 
@@ -36,7 +37,7 @@ model message {
   is_from_sender Boolean?
   content        String?   @db.VarChar
   read           Boolean?
-  sent_at        DateTime? @db.Date
+  sent_at        DateTime? @default(now())
   header         header?   @relation(fields: [header_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_header_message_id")
 }
 

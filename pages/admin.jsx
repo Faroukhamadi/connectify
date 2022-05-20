@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import { getSession } from '@auth0/nextjs-auth0';
 import { Form, Formik } from 'formik';
-import TextInput from '../components/Form/TextInput';
+import TextInput from '@/components/Form/TextInput';
 
 const CreateUserMutation = gql`
   mutation (

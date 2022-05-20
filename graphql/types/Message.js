@@ -148,6 +148,9 @@ export const HeadersMessagesQuery = extendType({
               },
             },
           },
+          orderBy: {
+            sent_at: 'desc',
+          },
           where: {
             OR: [
               {

@@ -1,7 +1,7 @@
-import logo from '../public/images/white_logo.png';
+import logo from '@/public/images/white_logo.png';
 import Image from 'next/dist/client/image';
-import useWindowDimensions from '../hooks/windowDimension';
-import downloadBtnText from '../lib/downloadBtnText';
+import useWindowDimensions from '@/hooks/windowDimension';
+import downloadBtnText from '@/lib/downloadBtnText';
 
 const Footer = () => {
   const { width } = useWindowDimensions();

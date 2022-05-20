@@ -8,10 +8,10 @@ const main = async () => {
     data: {
       senderId: 2,
       receiverId: 1,
-      status: 'pending',
+      status: 'received',
       message: {
         create: {
-          content: 'Hello from nested write',
+          content: 'Hello from newww write',
           read: true,
           sent_at: new Date(),
           is_from_sender: true,

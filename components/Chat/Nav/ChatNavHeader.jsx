@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import placeholder from '../../../public/images/placeholder.png';
+import placeholder from '@/public/images/placeholder.png';
 
 const ChatNavHeader = () => {
   return (

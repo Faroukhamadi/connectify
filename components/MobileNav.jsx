@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Image from 'next/image';
-import logo from '../public/images/white_logo.png';
-import { showMenuContext } from '../components/showMenuContextManagement';
+import logo from '@/public/images/white_logo.png';
+import { showMenuContext } from '@/components/showMenuContextManagement';
 import Link from 'next/link';
 
 const MobileNav = () => {
