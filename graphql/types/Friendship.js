@@ -28,7 +28,7 @@ export const FriendshipsTableQuery = extendType({
 export const FriendshipsTableUsersQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.list.field('friendshipsTable11', {
+    t.list.field('friendshipsTable', {
       type: 'Friendship',
       resolve(_parent, _args, ctx) {
         return ctx.prisma.friendship.findMany({
