@@ -15,6 +15,7 @@ export default objectType({
   definition(t) {
     t.id('id');
     t.string('status');
+    t.string('createdAt');
     t.field('from_id', { type: 'User' });
     t.field('to_id', { type: 'User' });
   },

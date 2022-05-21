@@ -11,7 +11,8 @@ export const Message = objectType({
     t.boolean('is_from_sender');
     t.string('content');
     t.boolean('read');
-    // t.string('time');
+    t.string('time');
+    t.string('sent_at');
     t.field('header', { type: Header });
   },
 });
@@ -174,54 +175,6 @@ export const HeadersMessagesQuery = extendType({
 });
 
 // We need the logged in user to fetch friends and then
-// export const LastMessageHeaderQuery = extendType({
-//   type: 'Query',
-//   definition(t) {
-//     t.list.field('last_message_header', {
-//       type: 'Message',
-//       args: {
-//         firstId: nonNull(intArg()),
-//         secondId: nonNull(intArg()),
-//       },
-//       resolve(_parent, args, _ctx) {
-//         return prisma.message.findMany({
-//           include: {
-//             header: {
-//               select: {
-//                 createdAt: true,
-//               },
-//               include: {
-//                 from_id: true,
-//                 to_id: true,
-//               },
-//             },
-//           },
-//           orderBy: {
-//             sent_at: 'desc',
-//           },
-//           take: 1,
-//           where: {
-//             OR: [
-//               {
-//                 header: {
-//                   senderId: args.firstId,
-//                   receiverId: args.secondId,
-//                 },
-//               },
-//               {
-//                 header: {
-//                   senderId: args.secondId,
-//                   receiverId: args.firstId,
-//                 },
-//               },
-//             ],
-//           },
-//         });
-//       },
-//     });
-//   },
-// });
-
 export const LastMessageHeaderQuery = extendType({
   type: 'Query',
   definition(t) {
@@ -232,7 +185,36 @@ export const LastMessageHeaderQuery = extendType({
         secondId: nonNull(intArg()),
       },
       resolve(_parent, args, _ctx) {
-        return prisma.message.findMany();
+        return prisma.message.findMany({
+          include: {
+            header: {
+              include: {
+                from_id: true,
+                to_id: true,
+              },
+            },
+          },
+          orderBy: {
+            sent_at: 'desc',
+          },
+          take: 1,
+          where: {
+            OR: [
+              {
+                header: {
+                  senderId: args.firstId,
+                  receiverId: args.secondId,
+                },
+              },
+              {
+                header: {
+                  senderId: args.secondId,
+                  receiverId: args.firstId,
+                },
+              },
+            ],
+          },
+        });
       },
     });
   },
