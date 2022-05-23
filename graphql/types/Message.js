@@ -184,8 +184,8 @@ export const LastMessageHeaderQuery = extendType({
         firstId: nonNull(intArg()),
         secondId: nonNull(intArg()),
       },
-      resolve(_parent, args, _ctx) {
-        return prisma.message.findMany({
+      resolve(_parent, args, ctx) {
+        return ctx.prisma.message.findMany({
           include: {
             header: {
               include: {

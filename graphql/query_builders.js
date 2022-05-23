@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const Headers = gql`
+export const HeadersQuery = gql`
   query Headers {
     headers {
       id
@@ -24,7 +24,7 @@ export const Headers = gql`
   }
 `;
 
-export const HeadersMessages = gql`
+export const HeadersMessagesQuery = gql`
   query Headers_messages($firstId: Int!, $secondId: Int!) {
     headers_messages(firstId: $firstId, secondId: $secondId) {
       id
@@ -56,7 +56,7 @@ export const HeadersMessages = gql`
   }
 `;
 
-export const LastMessageHeader = gql`
+export const LastMessageHeaderQuery = gql`
   query Last_message_header($firstId: Int!, $secondId: Int!) {
     last_message_header(firstId: $firstId, secondId: $secondId) {
       id
@@ -88,7 +88,7 @@ export const LastMessageHeader = gql`
   }
 `;
 
-export const Messages = gql`
+export const MessagesQuery = gql`
   query Messages($first: Int, $after: Int) {
     messages(first: $first, after: $after) {
       pageInfo {
@@ -129,7 +129,7 @@ export const Messages = gql`
   }
 `;
 
-export const User = gql`
+export const UserQuery = gql`
   query User($userId: Int, $username: String) {
     user(id: $userId, username: $username) {
       id
@@ -141,7 +141,7 @@ export const User = gql`
   }
 `;
 
-export const Users = gql`
+export const UsersQuery = gql`
   query Users($first: Int, $after: Int) {
     users(first: $first, after: $after) {
       pageInfo {
@@ -162,19 +162,19 @@ export const Users = gql`
   }
 `;
 
-export const AreFriends = gql`
+export const AreFriendsQuery = gql`
   query Query($userId: Int!, $friendId: Int!) {
     areFriends(userId: $userId, friendId: $friendId)
   }
 `;
 
-export const Friends = gql`
+export const FriendsQuery = gql`
   query Query($userId: Int!, $friendId: Int!) {
     areFriends(userId: $userId, friendId: $friendId)
   }
 `;
 
-export const FriendshipsTable = gql`
+export const FriendshipsTableQuery = gql`
   query FriendshipsTable {
     friendshipsTable {
       user {

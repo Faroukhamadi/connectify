@@ -1,7 +1,19 @@
 import Image from 'next/image';
 import placeholder from '@/public/images/placeholder.png';
+import { useLazyQuery } from '@apollo/client';
+import { UsersQuery } from '@/components/../graphql/query_builders';
+import { useEffect, useState } from 'react';
 
 const ChatNavHeader = () => {
+  // This won't scale when you have many users
+  const [loadUsers, { called, loading, data }] = useLazyQuery(UsersQuery);
+  const [toggleUsers, setToggleUsers] = useState('');
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div className="flex flex-col fixed bg-discord_dark z-50 min-w-[350px] top-0">
       <div className="flex justify-between items-center mt-3 mx-2">
@@ -38,9 +50,35 @@ const ChatNavHeader = () => {
           type="text"
           className="min-w-[95%] min-h-[40px] rounded-full font-helvetica bg-di bg-search bg-no-repeat bg-scroll bg-contain bg-[7px_center] indent-14 outline-none text-xl placeholder:text-gray-500 placeholder:font-helvetica placeholder:text-xl"
           placeholder="Search Connectify"
+          onFocus={() => {
+            setToggleUsers(true);
+            loadUsers();
+          }}
+          onBlur={() => {
+            setToggleUsers(false);
+            loadUsers();
+          }}
+          onChange={(e) => setQuery(e.target.value)}
         />
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 my-6 mx-auto"></div>
+      <ul>
+        {data &&
+          toggleUsers &&
+          data.users.edges
+            .filter((user) => {
+              if (query === '') {
+                console.log('first', user.node);
+                return user.node;
+              } else if (
+                user.node.first_name.toLowerCase().includes(query.toLowerCase())
+              ) {
+                console.log('second', user.node);
+                return user.node;
+              }
+            })
+            .map((user) => <li key={user.node.id}>{user.node.first_name}</li>)}
+      </ul>
     </div>
   );
 };
