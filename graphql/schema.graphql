@@ -60,6 +60,7 @@ type PageInfo {
 type Query {
   areFriends(friendId: Int!, userId: Int!): Boolean
   friends(userId: Int!): [Friendship]
+  friends_last_message_header(userId: Int): [Message!]
   friendshipsTable: [Friendship]
   headers: [Header]
   headers_messages(firstId: Int!, secondId: Int!): [Message]

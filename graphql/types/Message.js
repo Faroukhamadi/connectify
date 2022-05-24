@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { objectType, extendType, intArg, nonNull } from 'nexus';
+import { objectType, extendType, intArg, nonNull, arg, list } from 'nexus';
 import Header from './Header';
 
 const prisma = new PrismaClient();
@@ -174,7 +174,7 @@ export const HeadersMessagesQuery = extendType({
   },
 });
 
-// We need the logged in user to fetch friends and then
+// HACK: So the idea is, we get the ids of friends and then pass them down as arguments to the LastMessageQuery
 export const LastMessageHeaderQuery = extendType({
   type: 'Query',
   definition(t) {
@@ -215,6 +215,88 @@ export const LastMessageHeaderQuery = extendType({
             ],
           },
         });
+      },
+    });
+  },
+});
+
+// TODO: optimize this mess, this is the next thing I have to fetch in
+// front end
+export const FriendsLastMessageHeaderQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.list.nonNull.field('friends_last_message_header', {
+      type: 'Message',
+      args: {
+        userId: intArg(),
+      },
+      async resolve(_parent, args, _ctx) {
+        const friends = await prisma.friendship.findMany({
+          where: {
+            AND: [
+              {
+                OR: [
+                  {
+                    userId: args.userId,
+                  },
+                  {
+                    friendId: args.userId,
+                  },
+                ],
+              },
+              {
+                NOT: {
+                  room_id: null,
+                },
+              },
+            ],
+          },
+        });
+        let friendIds = [];
+        friends.forEach(async (friend) => {
+          if (friend.friendId === args.userId) {
+            friendIds.push(friend.userId);
+          } else {
+            friendIds.push(friend.friendId);
+          }
+        });
+        let mostRecentMessages = [];
+        for (const friendId of friendIds) {
+          let message = await prisma.message.findMany({
+            include: {
+              header: {
+                include: {
+                  from_id: true,
+                  to_id: true,
+                },
+              },
+            },
+            orderBy: {
+              header: {
+                createdAt: 'desc',
+              },
+            },
+            take: 1,
+            where: {
+              OR: [
+                {
+                  header: {
+                    senderId: args.userId,
+                    receiverId: friendId,
+                  },
+                },
+                {
+                  header: {
+                    senderId: friendId,
+                    receiverId: args.userId,
+                  },
+                },
+              ],
+            },
+          });
+          mostRecentMessages.push(...message);
+        }
+        return mostRecentMessages;
       },
     });
   },

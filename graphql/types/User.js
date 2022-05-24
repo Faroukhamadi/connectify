@@ -1,4 +1,14 @@
-import { intArg, stringArg, objectType, extendType, nonNull } from 'nexus';
+import { PrismaClient } from '@prisma/client';
+import {
+  intArg,
+  stringArg,
+  objectType,
+  extendType,
+  nonNull,
+  list,
+} from 'nexus';
+
+const prisma = new PrismaClient();
 
 export const User = objectType({
   name: 'User',
