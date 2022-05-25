@@ -196,6 +196,38 @@ export const FriendshipsTableQuery = gql`
   }
 `;
 
+export const FriendsLastMessageHeaderQuery = gql`
+  query Friends_last_message_header($userId: Int) {
+    friends_last_message_header(userId: $userId) {
+      id
+      is_from_sender
+      content
+      read
+      time
+      sent_at
+      header {
+        status
+        id
+        createdAt
+        to_id {
+          id
+          username
+          password
+          first_name
+          last_name
+        }
+        from_id {
+          id
+          username
+          password
+          first_name
+          last_name
+        }
+      }
+    }
+  }
+`;
+
 export const CreateHeaderMutation = gql`
   mutation Mutation(
     $senderId: Int!
