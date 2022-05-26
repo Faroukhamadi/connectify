@@ -1,5 +1,4 @@
 import { ApolloServer } from 'apollo-server-micro';
-import { typeDefs } from '../../graphql/schema';
 import { createContext } from '../../graphql/context';
 import { schema } from '../../graphql/schema';
 import Cors from 'micro-cors';

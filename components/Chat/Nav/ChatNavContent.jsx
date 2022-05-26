@@ -9,21 +9,10 @@ const ChatNavContent = () => {
     variables: { userId: 1 },
   });
 
-  // if (!loading)
-  //   return (
-  //     <div className="text-white mt-72">
-  //       <p>{data.friends_last_message_header[0].id}</p>
-  //       <p>{String(data.friends_last_message_header[0].is_from_sender)}</p>
-  //       <p>{data.friends_last_message_header[0].content}</p>
-  //       <p>{String(data.friends_last_message_header[0].read)}</p>
-  //     </div>
-  //   );
-
-  // !loading && console.log(data.friends_last_message_header[1].header.to_id);
-
   !loading &&
     data.friends_last_message_header.forEach((message, i) => {
-      console.log(i, message.header.to_id.id);
+      // code goes here
+      console.log(message);
     });
 
   return (
@@ -62,15 +51,18 @@ const ChatNavContent = () => {
                 height="55"
                 className="rounded-full"
               />
-              <div>
+              <div className="w-[240px]">
                 <p className="font-helvetica text-white text-lg">
-                  {/* {message.header.to_id} */}
-                  {message.header.to_id.id !== user.id
+                  {message.header.to_id.id != 1
                     ? `${message.header.to_id.first_name} ${message.header.to_id.last_name}`
                     : `${message.header.from_id.first_name} ${message.header.from_id.last_name}`}
                 </p>
                 <p className="font-helvetica text-gray-300 text-base">
-                  You: Hello there how are you{' '}
+                  {message.header.from_id.id == 1 ? 'You: ' : ''}
+                  {message.content.length > 20
+                    ? message.content.slice(0, 20)
+                    : message.content}
+                  ...
                   <span className="font-bold">&#183;</span> 3d
                 </p>
               </div>

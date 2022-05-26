@@ -35,6 +35,7 @@ import { useRouter } from 'next/router';
 
 const Home = ({ data }) => {
   const { user, isLoading } = useUser();
+  const router = useRouter();
 
   // TODO: Place those somewhere else and get a better waiting state
   // const { data, loading, error, fetchMore } = useQuery(AllUsersQuery, {
@@ -47,15 +48,32 @@ const Home = ({ data }) => {
 
   if (isLoading)
     return <div className="bg-discord_dark min-h-screen min-w-full"></div>;
+  if (user) {
+    router.push('/postlogin');
+  }
+  setTimeout(() => {
+    if (!user) {
+      return (
+        <ShowMenuContextProvider>
+          <MobileNav />
+          <Header />
+          <Main />
+          <Footer />
+        </ShowMenuContextProvider>
+      );
+    } else {
+      return <div className="bg-discord_dark min-h-screen min-w-full"></div>;
+    }
+  }, 0);
 
-  return (
-    <ShowMenuContextProvider>
-      <MobileNav />
-      <Header />
-      <Main />
-      <Footer />
-    </ShowMenuContextProvider>
-  );
+  // return (
+  //   <ShowMenuContextProvider>
+  //     <MobileNav />
+  //     <Header />
+  //     <Main />
+  //     <Footer />
+  //   </ShowMenuContextProvider>
+  // );
 };
 
 export default Home;

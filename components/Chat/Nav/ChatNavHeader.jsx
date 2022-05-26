@@ -62,22 +62,25 @@ const ChatNavHeader = () => {
         />
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 my-6 mx-auto"></div>
-      <ul>
+      {/* TODO: Replace this with conditional rendering */}
+      <ul className="max-h-60 overflow-y-scroll">
         {data &&
           toggleUsers &&
           data.users.edges
             .filter((user) => {
               if (query === '') {
-                console.log('first', user.node);
                 return user.node;
               } else if (
                 user.node.first_name.toLowerCase().includes(query.toLowerCase())
               ) {
-                console.log('second', user.node);
                 return user.node;
               }
             })
-            .map((user) => <li key={user.node.id}>{user.node.first_name}</li>)}
+            .map((user) => (
+              <li key={user.node.id} className="text-white">
+                {user.node.first_name}
+              </li>
+            ))}
       </ul>
     </div>
   );
