@@ -57,18 +57,14 @@ const Auth0LoginForm = ({ setShowLogin }) => {
           .required('Last name is Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        // setTimeout(() => {
         onsubmit(values);
         setSubmitting(false);
         setShowLogin(false);
-        // setTimeout(() => {
-        // });
-        // }, 400);
       }}
     >
       <Form className="flex flex-col">
         <TextInput
-          inputClass="min-h-[40px] text-gray-300 font-sans text-lg text bg-discord_dark indent-2 caret-white focus:outline-none"
+          className="min-h-[40px] text-gray-300 font-sans text-lg text bg-discord_dark indent-2 caret-white focus:outline-none"
           labelClass="mb-1 text-gray-300 uppercase font-bold text-sm mt-5"
           label="First Name"
           name="first_name"
@@ -76,7 +72,7 @@ const Auth0LoginForm = ({ setShowLogin }) => {
           type="text"
         />
         <TextInput
-          inputClass="min-h-[40px] text-gray-300 font-sans text-lg text bg-discord_dark indent-2 caret-white focus:outline-none"
+          className="min-h-[40px] text-gray-300 font-sans text-lg text bg-discord_dark indent-2 caret-white focus:outline-none"
           labelClass="mb-1 text-gray-300 uppercase font-bold text-sm mt-5"
           label="Last Name"
           name="last_name"

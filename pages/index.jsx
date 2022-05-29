@@ -13,6 +13,14 @@ const Home = ({ data }) => {
   const router = useRouter();
 
   useEffect(() => {
+    // TODO: fix event getting emitted when I hit the endpoint
+    const fetchData = async () => {
+      const res = await fetch('/api/socket');
+      console.log('res: ', res.body);
+    };
+
+    fetchData();
+
     Pusher.logToConsole = true;
     const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
       cluster: 'eu',
