@@ -10,25 +10,32 @@ import { useEffect, useState } from 'react';
 
 const Home = ({ data }) => {
   const { user, isLoading, error } = useUser();
+  const [toggleMessage, setToggleMessage] = useState(false);
+  const [executed, setExecuted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    // TODO: fix event getting emitted when I hit the endpoint
-    const fetchData = async () => {
-      const res = await fetch('/api/socket');
-      console.log('res: ', res.body);
-    };
+    if (!executed) {
+      const fetchData = async () => {
+        await fetch('/api/socket');
+      };
 
-    fetchData();
+      fetchData();
 
-    Pusher.logToConsole = true;
-    const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
-      cluster: 'eu',
-    });
-    const channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', (data) => {
-      alert(data.message);
-    });
+      Pusher.logToConsole = true;
+      const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
+        cluster: 'eu',
+      });
+      const channel = pusher.subscribe('my-channel');
+      channel.bind('my-event', (data) => {
+        console.log('data: ', data);
+      });
+      channel.bind('pusher:subscription_succeeded', (members) => {
+        console.log('subscription_succeeded binder');
+      });
+    } else {
+      setExecuted(true);
+    }
   }, []);
 
   if (isLoading) {
@@ -44,6 +51,23 @@ const Home = ({ data }) => {
   if (!user && !isLoading) {
     return (
       <ShowMenuContextProvider>
+        <button
+          className="bg-blue-600 w-96 text-white"
+          onClick={async () => {
+            await fetch('/api/socket', {
+              method: 'POST',
+              body: JSON.stringify({
+                firstName: 'farouk',
+                lastName: 'hamadi',
+                message: 'I like svelte',
+              }),
+            });
+            // const response = await fetch('/api/socket');
+            // console.log(await response.json());
+          }}
+        >
+          Toggle Button
+        </button>
         <MobileNav />
         <Header />
         <Main />
