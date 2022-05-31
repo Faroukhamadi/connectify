@@ -1,4 +1,33 @@
+import Pusher from 'pusher-js';
+import { useEffect, useState } from 'react';
+
 const ChatMainFooter = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [dataChanged, setDataChanged] = useState();
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetch('/api/socket');
+    };
+
+    fetchData();
+
+    Pusher.logToConsole = true;
+    const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
+      cluster: 'eu',
+    });
+    const channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', (data) => {
+      console.log('data: ', data);
+    });
+    channel.bind('pusher:subscription_succeeded', (members) => {
+      console.log('subscription_succeeded binder');
+    });
+
+    console.log('DATA CHANGED YAYYYY');
+  }, [dataChanged]);
+
   return (
     <div className="p-3 fixed bottom-0 bg-discord_dark w-full ">
       <div className="flex gap-3 items-center bg-discord_dark">
@@ -10,9 +39,29 @@ const ChatMainFooter = () => {
         >
           <path d="M12 21.5Q10.025 21.5 8.288 20.75Q6.55 20 5.275 18.725Q4 17.45 3.25 15.712Q2.5 13.975 2.5 12Q2.5 10.025 3.25 8.287Q4 6.55 5.275 5.275Q6.55 4 8.288 3.25Q10.025 2.5 12 2.5Q13.975 2.5 15.713 3.25Q17.45 4 18.725 5.275Q20 6.55 20.75 8.287Q21.5 10.025 21.5 12Q21.5 13.975 20.75 15.712Q20 17.45 18.725 18.725Q17.45 20 15.713 20.75Q13.975 21.5 12 21.5ZM11.25 16.75H12.75V12.75H16.75V11.25H12.75V7.25H11.25V11.25H7.25V12.75H11.25Z" />
         </svg>
+
         <input
           type="text"
           className="min-w-[66%] min-h-[24px] rounded-full bg-gray-300 indent-4 outline-none text-xl font-helvetica "
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={async (e) => {
+            console.log('key is: ', e.key);
+            console.log(e.key === 'Enter');
+            if (e.key === 'Enter') {
+              messages.push(inputValue);
+              await fetch('/api/socket', {
+                method: 'POST',
+                body: JSON.stringify({
+                  firstName: inputValue,
+                  lastName: 'hamadi',
+                  message: 'I love svelte',
+                }),
+              });
+              setInputValue('');
+              setDataChanged(!dataChanged);
+            }
+          }}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +72,9 @@ const ChatMainFooter = () => {
           <path d="M3.5 19.25V13.675L10.425 12L3.5 10.325V4.75L20.7 12Z" />
         </svg>
       </div>
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
     </div>
   );
 };
