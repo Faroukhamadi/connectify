@@ -1,32 +1,21 @@
-import Pusher from 'pusher-js';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-const ChatMainFooter = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [dataChanged, setDataChanged] = useState();
-  const [messages, setMessages] = useState([]);
+type Props = {
+  inputValue: string;
+  messages: string[];
+  dataChanged: Boolean;
+  setInputValue: Dispatch<SetStateAction<string>>;
+  setDataChanged: Dispatch<SetStateAction<boolean>>;
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetch('/api/socket');
-    };
-
-    fetchData();
-
-    Pusher.logToConsole = true;
-    const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
-      cluster: 'eu',
-    });
-    const channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', (data) => {
-      console.log('data: ', data);
-    });
-    channel.bind('pusher:subscription_succeeded', (members) => {
-      console.log('subscription_succeeded binder');
-    });
-
-    console.log('DATA CHANGED YAYYYY');
-  }, [dataChanged]);
+const ChatMainFooter: React.FC<Props> = ({
+  inputValue,
+  messages,
+  dataChanged,
+  setInputValue,
+  setDataChanged,
+}) => {
+  console.log('wohoooo passing props is cool', messages);
 
   return (
     <div className="p-3 fixed bottom-0 bg-discord_dark w-full ">

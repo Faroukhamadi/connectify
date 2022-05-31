@@ -78,7 +78,7 @@ const ChatMainContent = () => {
       </div>
       <div className="flex justify-end">
         <div className="rounded-lg bg-discord flex justify-end w-fit text-white font-helvetica my-3 p-2 mx-10">
-          <p>Chwaya ekher bech nohrked</p>
+          <p>Chwaya ekher bech norkeed ya bro</p>
         </div>
       </div>
       {/* IMPORTANT: Do not modify this message since it's used as an empty div */}
