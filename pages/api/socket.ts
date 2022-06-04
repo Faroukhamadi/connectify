@@ -1,46 +1,50 @@
-import Pusher from 'pusher';
-import Cors from 'micro-cors';
-import { RequestHandler } from 'micro';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextConfig } from 'next';
+import { Server } from 'socket.io';
 
-const cors = Cors();
+const handler = (_: any, res: any) => {
+  // here
+  if (!res.socket.server.io) {
+    console.log('Starting socket.io');
+    res.socket.server.io;
+    const io = new Server(res.socket.server);
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const pusher = new Pusher({
-    appId: process.env.PUSHER_APP_ID ?? '',
-    key: process.env.PUSHER_APP_KEY ?? '',
-    secret: process.env.PUSHER_APP_SECRET ?? '',
-    cluster: 'eu',
-    // useTLS: true,
-    // encrypted: true,
-  });
+    io.on('connection', (socket) => {
+      socket.broadcast.emit('a user connected');
 
-  console.log(req.method);
-  const body = await req.body;
-  console.log('body: ', body);
+      // joining a room on event sent from client side
+      socket.on('join', async (room: string) => {
+        console.log('joined room', room);
+        await socket.join(room);
+        console.log('keys: ', io.sockets.adapter.rooms['keys']());
+        console.log('values: ', io.sockets.adapter.rooms['values']());
+      });
+      socket.on('leave', async (room: string) => {
+        console.log('left room', room);
+        await socket.leave(room);
+        console.log('keys: ', io.sockets.adapter.rooms['keys']());
+        console.log('values: ', io.sockets.adapter.rooms['values']());
+      });
 
-  await pusher.trigger('my-channel', 'my-event', body);
-
-  try {
-    if (req.method === 'POST') {
-      console.log('hello world');
-      return res.send({ resp: 'yayyy' });
-    }
-  } catch (err) {
-    console.log(err);
-    res.json(err);
+      // sending a message based on form element from client side
+      socket.on('chat message', (message: string) => {
+        console.log('message: ', message);
+        console.log('now sending it back...');
+        // This broadcasts to everyone except user, which is not what I want
+        // socket.to('1').emit('chat message', message);
+        io.to('1').emit('chat message', message);
+      });
+    });
+    res.socket.server.io = io;
+  } else {
+    console.log('socket.io already running');
   }
-  // if (req.method === 'GET') {
-  //   await res.json({ heyThere: 'hey' });
-  // }
-  // const response = await req.body;
-  // console.log(response);
+  res.end();
+};
 
-  // pusher.post('/', () => {
-  //   console.log('hey');
-  // });
-
-  // res.json({ status: 200 });
+export const config: NextConfig = {
+  api: {
+    bodyParser: false,
+  },
 };
 
 export default handler;

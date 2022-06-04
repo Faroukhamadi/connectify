@@ -36,3 +36,7 @@ cypress.env.json
 .vercel
 
 dbschema.png
+
+
+# env files
+.env*

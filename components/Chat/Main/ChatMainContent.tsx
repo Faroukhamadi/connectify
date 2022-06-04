@@ -1,4 +1,10 @@
-const ChatMainContent = () => {
+import { FC } from 'react';
+
+interface Props {
+  messages: Array<string>;
+}
+
+const ChatMainContent: FC<Props> = ({ messages }) => {
   return (
     <div>
       <div className="flex justify-start overflow-y-scroll">
@@ -81,7 +87,14 @@ const ChatMainContent = () => {
           <p>Chwaya ekher bech norkeed ya bro</p>
         </div>
       </div>
-      {/* IMPORTANT: Do not modify this message since it's used as an empty div */}
+      {messages.map((message, index) => (
+        <div key={index} className="flex justify-end">
+          <div className="rounded-lg bg-discord flex justify-end w-fit text-white font-helvetica my-3 p-2 mx-10">
+            <p>{message}</p>
+          </div>
+        </div>
+      ))}
+      {/* IMPORTANT: Do not modify this message since it's used as a placeholder div to render components correctly */}
       <div className="flex justify-end">
         <div className="rounded-lg bg-discord flex justify-end w-fit text-white font-helvetica my-3 p-2 mx-10">
           <p>Dummy Message</p>

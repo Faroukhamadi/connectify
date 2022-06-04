@@ -11,7 +11,7 @@ datasource db {
 model friendship {
   userId                       Int
   friendId                     Int
-  room_id                      Int?
+  room_id                      Int? @unique
   friend user @relation("friendship_friendTouser", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_friend")
   user   user @relation("friendship_userTouser", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
 
