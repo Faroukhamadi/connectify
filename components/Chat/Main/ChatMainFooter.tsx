@@ -1,19 +1,30 @@
-import { Dispatch, FormEvent, SetStateAction, FocusEvent, FC } from 'react';
-import { Socket } from 'socket.io';
+import {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  FocusEvent,
+  FC,
+  useEffect,
+} from 'react';
+import { Socket } from 'socket.io-client';
 
-interface Props {
+interface ChatMainFooterProps {
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
   setMessages: Dispatch<SetStateAction<string[]>>;
   socket: Socket;
 }
 
-const ChatMainFooter: FC<Props> = ({
+const ChatMainFooter: FC<ChatMainFooterProps> = ({
   inputValue,
   setInputValue,
   setMessages,
   socket,
 }) => {
+  useEffect(() => {
+    console.log('just wanted to say hello');
+  }, []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     // socket.emit('join', '1');
     e.preventDefault();
@@ -53,6 +64,7 @@ const ChatMainFooter: FC<Props> = ({
             height="24"
             width="24"
             className="fill-discord mr-2 cursor-pointer rounded-full"
+            onClick={() => socket.emit('leave', '1')}
           >
             <path d="M3.5 19.25V13.675L10.425 12L3.5 10.325V4.75L20.7 12Z" />
           </svg>

@@ -3,6 +3,7 @@ import placeholder from '@/public/images/placeholder.png';
 import { useLazyQuery } from '@apollo/client';
 import { UsersQuery } from '@/components/../graphql/query_builders';
 import { useEffect, useState } from 'react';
+import { Socket, io } from 'socket.io-client';
 
 const ChatNavHeader = () => {
   // This won't scale when you have many users
@@ -58,7 +59,12 @@ const ChatNavHeader = () => {
             setToggleUsers(false);
             loadUsers();
           }}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            //qsdqs
+            const socket = io();
+            socket.emit('chat message', e.target.value);
+          }}
         />
       </div>
       <div className="w-80 border-t-2 border-white opacity-5 my-6 mx-auto"></div>
