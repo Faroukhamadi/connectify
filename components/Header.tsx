@@ -12,7 +12,7 @@ const Header = () => {
 
   useEffect(() => {
     setImageSize(headerImageSize(width));
-  }, []);
+  }, [width]);
 
   const { user } = useUser();
   const showMenuConsumer = useContext(showMenuContext);
@@ -50,13 +50,6 @@ const Header = () => {
                 sign up
               </p>
             </a>
-            {/* <Link href="/admin">
-              <a>
-                <p className="text-white text-center uppercase font-sourcesansSemiBold text-xl">
-                  Create User
-                </p>
-              </a>
-            </Link> */}
           </div>
           <svg
             viewBox="0 0 100 80"

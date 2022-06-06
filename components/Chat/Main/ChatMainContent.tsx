@@ -94,7 +94,7 @@ const ChatMainContent: FC<Props> = ({ messages }) => {
           </div>
         </div>
       ))}
-      {/* IMPORTANT: Do not modify this message since it's used as a placeholder div to render components correctly */}
+      {/* HACK: Do not modify this message since it's used as a placeholder div to render components correctly */}
       <div className="flex justify-end">
         <div className="rounded-lg bg-discord flex justify-end w-fit text-white font-helvetica my-3 p-2 mx-10">
           <p>Dummy Message</p>

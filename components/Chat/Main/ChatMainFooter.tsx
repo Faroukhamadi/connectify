@@ -1,50 +1,19 @@
-import {
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  FocusEvent,
-  FC,
-} from 'react';
-import io, { Socket } from 'socket.io-client';
+import { Dispatch, FormEvent, SetStateAction, FocusEvent, FC } from 'react';
+import { Socket } from 'socket.io';
 
-let socket: Socket;
-
-type Props = {
+interface Props {
   inputValue: string;
-  messages: Array<string>;
   setInputValue: Dispatch<SetStateAction<string>>;
   setMessages: Dispatch<SetStateAction<string[]>>;
-};
+  socket: Socket;
+}
 
 const ChatMainFooter: FC<Props> = ({
   inputValue,
-  messages,
   setInputValue,
   setMessages,
+  socket,
 }) => {
-  useEffect(() => {
-    const addMessage = (message: string) =>
-      setMessages((prevMessages) => [...prevMessages, message]);
-    fetch('/api/socket').finally(() => {
-      socket = io();
-
-      socket.on('connect', () => {
-        console.log('connect');
-        socket.emit('connected...');
-      });
-
-      socket.on('chat message', addMessage);
-
-      socket.on('disconnect', () => {
-        console.log('disconnected...');
-      });
-    });
-    () => {
-      socket.off('chat message');
-    };
-  }, []);
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     // socket.emit('join', '1');
     e.preventDefault();

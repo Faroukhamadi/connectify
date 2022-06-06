@@ -1,12 +1,16 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, ReactNode } from 'react';
+
+interface Props {
+  children: ReactNode;
+}
 
 export const showMenuContext = createContext({
   showMenu: false,
-  toggleMenu: () => {},
+  toggleMenu: (arg: boolean) => {},
 });
 
-export const ShowMenuContextProvider = (props) => {
-  const toggleMenu = (showMenu) => {
+export const ShowMenuContextProvider = (props: Props) => {
+  const toggleMenu = (showMenu: boolean) => {
     setState({ ...state, showMenu: showMenu });
   };
 

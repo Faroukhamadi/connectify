@@ -2,8 +2,11 @@ import logo from '@/public/images/white_logo.png';
 import Image from 'next/dist/client/image';
 import useWindowDimensions from '@/hooks/windowDimension';
 import downloadBtnText from '@/lib/downloadBtnText';
+import { FC } from 'react';
 
-const Footer = () => {
+interface FooterProps {}
+
+const Footer: FC<FooterProps> = () => {
   const { width } = useWindowDimensions();
   let imageWidth, imageHeight;
 
@@ -29,8 +32,10 @@ const Footer = () => {
         <Image
           src={logo}
           alt="Logo"
-          width={imageWidth >= 768 && imageWidth < 1024 ? 85 : 60}
-          height={imageHeight >= 768 && imageHeight < 1024 ? 85 : 60}
+          width={imageWidth && imageWidth >= 768 && imageWidth < 1024 ? 85 : 60}
+          height={
+            imageHeight && imageHeight >= 768 && imageHeight < 1024 ? 85 : 60
+          }
           layout="fixed"
         />
         <h1 className="text-white font-unisansHeavyItalic text-lg md:text-2xl tracking-wider">

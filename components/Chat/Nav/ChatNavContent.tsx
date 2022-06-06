@@ -3,7 +3,13 @@ import placeholder from '@/public/images/placeholder.png';
 import { useQuery } from '@apollo/client';
 import { FriendsLastMessageHeaderQuery } from '../../../graphql/query_builders';
 import { useUser } from '@auth0/nextjs-auth0';
-const ChatNavContent = () => {
+import { FC } from 'react';
+
+interface ChatNavContentProps {
+  chatData: string;
+}
+
+const ChatNavContent: FC<ChatNavContentProps> = () => {
   const { user } = useUser();
   const { data, loading, error } = useQuery(FriendsLastMessageHeaderQuery, {
     variables: { userId: 1 },
@@ -13,12 +19,20 @@ const ChatNavContent = () => {
     <div className="flex flex-col gap-4 ">
       {/* STARTS HERE */}
       {!loading &&
-        data.friends_last_message_header.map((message, i) => (
+        data.friends_last_message_header.map((message: any, index: number) => (
           <>
             <div
-              key={message.id}
+              key={index}
+              onClick={(e) => {
+                const friendId = e.currentTarget.getAttribute('data-key');
+              }}
+              data-key={
+                message.header.to_id.id != 1
+                  ? `${message.header.to_id.id}`
+                  : `${message.header.from_id.id}`
+              }
               className={
-                i === 0
+                index === 0
                   ? 'flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer mt-40'
                   : 'flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer'
               }

@@ -1,13 +1,22 @@
+import { FC, useState } from 'react';
 import ChatMain from './Chat/Main/ChatMain';
 import ChatNav from './Chat/Nav/ChatNav';
 
-type Props = {};
+interface ChatHomeProps {}
 
-const ChatHome: React.FC<Props> = () => {
+const ChatHome: FC<ChatHomeProps> = () => {
+  const [inputValue, setInputValue] = useState<string>('');
+  const [messages, setMessages] = useState<string[]>([]);
+  let propsToPass = {
+    inputValue,
+    messages,
+    setInputValue,
+    setMessages,
+  };
   return (
     <div className="max-h-screen flex">
-      <ChatNav />
-      <ChatMain />
+      <ChatNav {...propsToPass} />
+      <ChatMain {...propsToPass} />
     </div>
   );
 };
