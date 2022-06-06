@@ -9,39 +9,19 @@ const ChatNavContent = () => {
     variables: { userId: 1 },
   });
 
-  !loading &&
-    data.friends_last_message_header.forEach((message, i) => {
-      // code goes here
-      console.log(message);
-    });
-
   return (
     <div className="flex flex-col gap-4 ">
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer mt-40">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
       {/* STARTS HERE */}
       {!loading &&
-        data.friends_last_message_header.map((message) => (
+        data.friends_last_message_header.map((message, i) => (
           <>
             <div
               key={message.id}
-              className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer"
+              className={
+                i === 0
+                  ? 'flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer mt-40'
+                  : 'flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer'
+              }
             >
               <Image
                 src={placeholder}
@@ -70,150 +50,7 @@ const ChatNavContent = () => {
             <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
           </>
         ))}
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
       {/* ENDS HERE */}
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
-      <div className="w-80 border-t-2 border-white opacity-5 mx-auto"></div>
-      <div className="flex gap-3 justify-center hover:bg-discord hover:bg-opacity-20 py-4 cursor-pointer">
-        <Image
-          src={placeholder}
-          alt="placeholder"
-          layout="fixed"
-          width="55"
-          height="55"
-          className="rounded-full"
-        />
-        <div>
-          <p className="font-helvetica text-white text-lg">Aous Hamadi</p>
-          <p className="font-helvetica text-gray-300 text-base">
-            You: Hello there how are you{' '}
-            <span className="font-bold">&#183;</span> 3d
-          </p>
-        </div>
-      </div>
     </div>
   );
 };

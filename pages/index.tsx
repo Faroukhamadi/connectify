@@ -5,20 +5,18 @@ import MobileNav from '@/components/MobileNav';
 import { ShowMenuContextProvider } from '@/components/showMenuContextManagement';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 
-const Home = ({ data }) => {
+interface HomeProps {
+  data: string;
+}
+
+const Home: NextPage<HomeProps> = () => {
   const { user, isLoading, error } = useUser();
   const router = useRouter();
 
-  if (isLoading) {
-    console.log('We are here 1');
-    return <div className="bg-discord_dark min-h-screen min-w-full"></div>;
-  }
   if (user) {
     router.push('/postlogin');
-  }
-  if (error) {
-    return <h1>Error</h1>;
   }
   if (!user && !isLoading) {
     return (

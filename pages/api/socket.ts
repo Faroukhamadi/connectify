@@ -29,8 +29,6 @@ const handler = (_: any, res: any) => {
       socket.on('chat message', (message: string) => {
         console.log('message: ', message);
         console.log('now sending it back...');
-        // This broadcasts to everyone except user, which is not what I want
-        // socket.to('1').emit('chat message', message);
         io.to('1').emit('chat message', message);
       });
     });
