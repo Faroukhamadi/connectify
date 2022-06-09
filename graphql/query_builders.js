@@ -309,3 +309,9 @@ export const CreateUserMutation = gql`
     }
   }
 `;
+
+export const RoomIdQuery = gql`
+  query Query($userId: Int!, $friendId: Int!) {
+    room(userId: $userId, friendId: $friendId)
+  }
+`;

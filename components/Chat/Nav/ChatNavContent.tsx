@@ -1,21 +1,26 @@
 import Image from 'next/image';
 import placeholder from '@/public/images/placeholder.png';
-import { useQuery } from '@apollo/client';
-import { FriendsLastMessageHeaderQuery } from '../../../graphql/query_builders';
+import { useQuery, useLazyQuery } from '@apollo/client';
+import {
+  FriendsLastMessageHeaderQuery,
+  RoomIdQuery,
+} from '../../../graphql/query_builders';
 import { useUser } from '@auth0/nextjs-auth0';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Socket } from 'socket.io-client';
 
 interface ChatNavContentProps {
   socket: Socket;
 }
 
-const ChatNavContent: FC<ChatNavContentProps> = () => {
+const ChatNavContent: FC<ChatNavContentProps> = ({ socket }) => {
+  const [currentRoom, setCurrentRoom] = useState('');
   const { user } = useUser();
-  const { data, loading, error } = useQuery(FriendsLastMessageHeaderQuery, {
+  const { data, loading } = useQuery(FriendsLastMessageHeaderQuery, {
     variables: { userId: 1 },
   });
-  console.log('data: ', data);
+  const [getRoomId, { data: roomData }] = useLazyQuery(RoomIdQuery);
+
   return (
     <div className="flex flex-col gap-4">
       {/* STARTS HERE */}
@@ -24,10 +29,24 @@ const ChatNavContent: FC<ChatNavContentProps> = () => {
           <>
             <div
               key={index}
-              onClick={(e) => {
-                const friendId = e.currentTarget.getAttribute('data-key');
+              onClick={async (e) => {
+                const friendId = e.currentTarget.getAttribute('data-user');
+                if (!friendId) {
+                  return;
+                }
+                getRoomId({
+                  variables: { userId: 1, friendId: parseInt(friendId) },
+                }).then((res) => {
+                  console.log(res.data.room);
+                  if (!currentRoom) {
+                    socket.emit('join', res.data.room.toString());
+                  } else {
+                    socket.emit('leave', currentRoom);
+                    socket.emit('join', res.data.room.toString());
+                  }
+                });
               }}
-              data-key={
+              data-user={
                 message.header.to_id.id != 1
                   ? `${message.header.to_id.id}`
                   : `${message.header.from_id.id}`
