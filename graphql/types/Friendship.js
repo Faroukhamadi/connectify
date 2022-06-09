@@ -122,3 +122,32 @@ export const FriendsQuery = extendType({
     });
   },
 });
+
+export const RoomIdQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.int('room', {
+      args: {
+        userId: nonNull(intArg()),
+        friendId: nonNull(intArg()),
+      },
+      async resolve(_parent, { friendId, userId }, ctx) {
+        const result = await prisma.friendship.findFirst({
+          where: {
+            OR: [
+              {
+                userId,
+                friendId,
+              },
+              {
+                userId: friendId,
+                friendId: userId,
+              },
+            ],
+          },
+        });
+        return result ? result.room_id : null;
+      },
+    });
+  },
+});

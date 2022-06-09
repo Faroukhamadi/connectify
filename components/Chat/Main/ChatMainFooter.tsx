@@ -21,10 +21,6 @@ const ChatMainFooter: FC<ChatMainFooterProps> = ({
   setMessages,
   socket,
 }) => {
-  useEffect(() => {
-    console.log('just wanted to say hello');
-  }, []);
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     // socket.emit('join', '1');
     e.preventDefault();

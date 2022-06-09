@@ -30,7 +30,7 @@ const Header = () => {
               layout="fixed"
               priority
             />
-            <h1 className="text-white font-unisansHeavyItalic text-lg md:text-2xl xl:text-4xl tracking-wider ">
+            <h1 className="text-white cursor-default font-unisansHeavyItalic text-lg md:text-2xl xl:text-4xl tracking-wider ">
               Connectify
             </h1>
           </div>

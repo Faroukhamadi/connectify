@@ -66,6 +66,7 @@ type Query {
   headers_messages(firstId: Int!, secondId: Int!): [Message]
   last_message_header(firstId: Int!, secondId: Int!): [Message]
   messages(after: Int, first: Int): MessageResponse
+  room(friendId: Int!, userId: Int!): Int
   user(id: Int, username: String): User
   users(after: Int, first: Int): Response
 }

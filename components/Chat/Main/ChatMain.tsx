@@ -1,8 +1,8 @@
 import ChatMainContent from './ChatMainContent';
 import ChatMainHeader from './ChatMainHeader';
 import ChatMainFooter from './ChatMainFooter';
-import { Dispatch, FC, SetStateAction, useEffect } from 'react';
-import { io, Socket } from 'socket.io-client';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { Socket } from 'socket.io-client';
 
 interface ChatMainProps {
   inputValue: string;

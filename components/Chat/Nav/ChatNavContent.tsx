@@ -4,9 +4,10 @@ import { useQuery } from '@apollo/client';
 import { FriendsLastMessageHeaderQuery } from '../../../graphql/query_builders';
 import { useUser } from '@auth0/nextjs-auth0';
 import { FC } from 'react';
+import { Socket } from 'socket.io-client';
 
 interface ChatNavContentProps {
-  chatData: string;
+  socket: Socket;
 }
 
 const ChatNavContent: FC<ChatNavContentProps> = () => {
@@ -14,9 +15,9 @@ const ChatNavContent: FC<ChatNavContentProps> = () => {
   const { data, loading, error } = useQuery(FriendsLastMessageHeaderQuery, {
     variables: { userId: 1 },
   });
-
+  console.log('data: ', data);
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4">
       {/* STARTS HERE */}
       {!loading &&
         data.friends_last_message_header.map((message: any, index: number) => (
